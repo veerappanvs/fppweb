@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<style>
+.btn{
+margin:10px;
+}
+</style>
+
+<div class="container">
+  <div class="row">
+  
+  
+<!--   				<div class="">
+				<button type="button" class="btn" data-toggle="collapse" data-target="#demo">Fiscal Report</button>
+  				<div id="demo" class="collapse">
+  					<div class="page-header">
+  						<h4>Fiscal Report </h4>    
+  					</div>
+  					
+  					<div>
+	  					<div class="col-sm-5">
+	  					  <label class="control-label col-sm-3" for="email">License Category Type</label>
+					      <select  class="form-control"  ng-model="acctname"  >
+					      <option value=''>Please choose the license Category type</option>
+				    			<option ng-repeat="acctnameI  in acctnameList1" value="{{acctnameI}}"    >{{acctnameI}}</option> 
+						   </select>
+	  					</div>
+	  					<div class="col-sm-2"><input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="Start Date" ng-model= "startDate"  value="{{startDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-2"> <input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="End Date"  ng-model= "endDate"  value="{{endDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-3"><button type="submit"  ng-click="fiscalReport( acctname, startDate,  endDate)"  class="btn btn-block1"  >
+						<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Generate Fiscal Report</button></div>
+  					
+  					</div>
+  				</div>
+			
+			
+			
+				<div class="">
+				<button type="button" class="btn" data-toggle="collapse" data-target="#demo1">Active Facilities</button>
+  				<div id="demo1" class="collapse">
+  					<div class="page-header">
+  						<h4>Active Facilites Report </h4>    
+  					</div>
+					
+					<div>
+	  					<div class="col-sm-9">
+	  					  <label class="control-label col-sm-3" for="email">License Category Type</label>
+					      <select multiple  class="form-control"  ng-model="activefacilitiesmodel" >
+					      <option value=''>Please choose the license Category type</option>
+				    			<option ng-repeat="acctnameI  in acctnameList2" value="{{acctnameI}}"  placeholder="Please choose the license Category type">{{acctnameI}}</option> 
+						   </select>
+	  					</div>
+	  					<div class="col-sm-2"><input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="Start Date" ng-model= "startDate"  value="{{startDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-2"> <input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="End Date" ng-model= "endDate"  value="{{endDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-3"><button type="submit"  ng-click="activefacilities()"  class="btn btn-block1"  >
+						<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Generate Active Facilities  Report</button></div>
+  					</div>
+  				</div>
+  				
+  				
+  				<div class="">
+  				<button type="button" class="btn" data-toggle="collapse" data-target="#demo2">Expired Facilities</button>
+  				<div id="demo2" class="collapse">
+  					<div class="page-header">
+  						<h4>Expired Facilites Report </h4>    
+  					</div>
+					
+					<div>
+	  					<div class="col-sm-5">
+	  					  <label class="control-label col-sm-3" for="email">License Category Type</label>
+	  					 <select multiple  class="form-control"  ng-model="catName" >
+					      <option value=''>Please choose the license Category type</option>
+				    			<option ng-repeat="acctnameI  in acctnameList3" value="{{acctnameI}}"  placeholder="Please choose the license Category type">{{acctnameI}}</option> 
+						   </select>
+	  					</div>
+	  					<div class="col-sm-2"><input	id="today" type="text" 
+	  					onfocus="(this.type='date')"	class="form-control"  placeholder="Start Date" ng-model= "dateIssue"  value="{{startDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-2"> <input	id="today" type="text" onfocus="(this.type='date')"	
+	  					class="form-control"  placeholder="End Date" ng-model= "dateExpire"  value="{{endDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-3"><button type="submit"  ng-click="expiredFacilites()"  class="btn btn-block1"  >
+						<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Generate Expired Facilities  Report</button></div>
+  					</div>
+  					</div>
+					
+  				</div>
+  				
+  				
+  				<div class="">
+  				<button type="button" class="btn" data-toggle="collapse" data-target="#demo3">Expired Registration with Active Facilities</button>
+  				<div id="demo3" class="collapse">
+  					<div class="page-header">
+  						<h4>Expired Registrations with ACTIVE Status </h4>    
+  					</div>
+  						<div>
+	  					<div class="col-sm-6">
+	  					  <label class="control-label col-sm-3" for="email">License Category Type</label>
+	  					 <select multiple  class="form-control"  ng-model="acctName" >
+					      <option value=''>Please choose the license Category type</option>
+				    			<option ng-repeat="acctnameI  in acctnameList4" value="{{acctnameI}}"  placeholder="Please choose the license Category type">{{acctnameI}}</option> 
+						   </select>
+	  					</div>
+	  					<div class="col-sm-3"><input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="Start Date" ng-model= "startDate"  value="{{startDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-2"> <input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="End Date" ng-model= "endDate"  value="{{endDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-3"><button type="submit"  ng-click="expiredRegisterationFacilites( )"  class="btn btn-block1"  >
+						<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Generate Expired Registration Facilities Report</button></div>
+  					</div>
+  					</div>
+  				</div>
+ -->  				
+<style>
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+        background-color: #ddd;
+    color: #000;
+}}
+</style>
+
+
+
+  <uib-tabset active="activePill"  type="pills">
+    <uib-tab index="0" heading="Fiscal Report">
+   <div class="page-header">
+  						<h4>Fiscal Report </h4>    
+  					</div>
+  					
+  					<div>
+	  					<div class="col-sm-5">
+	  					 <!--  <label class="control-label col-sm-3" for="email">License Category Type</label> -->
+					      <select multiple class="form-control"  ng-model="acctname"  size="15" >
+					      <option value=''>Please choose the license Category type</option>
+				    			<option ng-repeat="acctnameI  in acctnameList1" value="{{acctnameI}}"    >{{acctnameI}}</option> 
+						   </select>
+	  					</div>
+	  					<div class="col-sm-2"><input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="Start Date" ng-model= "startDate"  value="{{startDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-2"> <input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="End Date"  ng-model= "endDate"  value="{{endDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-3"><button  ng-disabled="!(acctname && startDate && endDate)"  type="submit"  ng-click="fiscalReport( acctname, startDate,  endDate)"  class="btn btn-block1"  >
+						<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Generate Fiscal Report</button></div>
+  					
+  					</div>
+    </uib-tab>
+   
+   
+     <uib-tab index="1" heading="Active Facilities">
+   <div class="page-header">
+  						<h4>Active Facilites Report </h4>    
+  					</div>
+					
+					<div>
+	  					<div class="col-sm-9">
+	  					 <!--  <label class="control-label col-sm-3" for="email">License Category Type</label> -->
+					      <select multiple  class="form-control"  ng-model="activefacilitiesmodel" size="15" >
+					      <option value=''>Please choose the license Category type</option>
+				    			<option ng-repeat="acctnameI  in acctnameList2" value="{{acctnameI}}"  placeholder="Please choose the license Category type">{{acctnameI}}</option> 
+						   </select>
+	  					</div>
+	  					<!-- <div class="col-sm-2"><input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="Start Date" ng-model= "startDate"  value="{{startDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-2"> <input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="End Date" ng-model= "endDate"  value="{{endDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div> -->
+	  					<div class="col-sm-3"><button type="submit" ng-disabled="!(activefacilitiesmodel )" ng-click="activefacilities(activefacilitiesmodel)"  class="btn btn-block1"  >
+						<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Generate Active Facilities  Report</button></div>
+  					</div>
+    
+    </uib-tab>
+   
+   
+     <uib-tab index="2" heading="Expired Facilities">
+   <div class="page-header">
+  						<h4>Expired Facilites Report </h4>    
+  					</div>
+					
+					<div>
+	  					<div class="col-sm-5">
+	  					 <!--  <label class="control-label col-sm-3" for="email">License Category Type</label> -->
+	  					 <select multiple  class="form-control"  ng-model="catName" size="15" >
+					      <option value=''>Please choose the license Category type</option>
+				    			<option ng-repeat="acctnameI  in acctnameList3" value="{{acctnameI}}"  placeholder="Please choose the license Category type">{{acctnameI}}</option> 
+						   </select>
+	  					</div>
+	  					<div class="col-sm-2"><input	id="today" type="text" 
+	  					onfocus="(this.type='date')"	class="form-control"  placeholder="Start Date" ng-model= "dateIssue"  value="{{startDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-2"> <input	id="today" type="text" onfocus="(this.type='date')"	
+	  					class="form-control"  placeholder="End Date" ng-model= "dateExpire"  value="{{endRange}}"   data-date="" data-date-format="mm/dd/yyyy"	></div>
+	  					<div class="col-sm-3"><button type="submit" ng-disabled="!(catName && dateIssue && dateExpire)" ng-click="expiredFacilites(dateIssue,dateExpire,catName)"  class="btn btn-block1"  >
+						<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Generate Expired Facilities  Report</button></div>
+  					</div>
+    
+    </uib-tab>
+   
+    <uib-tab index="3" heading="Expired Registration with Active Facilities">
+    <div class="page-header">
+  						<h4>Expired Registrations with ACTIVE Status </h4>    
+  					</div>
+  						<div>
+	  					<div class="col-sm-6">
+	  					 <!--  <label class="control-label col-sm-3" for="email">License Category Type</label> -->
+	  					 <select multiple  class="form-control"  ng-model="acctName"  size="15" required >
+					      <option value=''>Please choose the license Category type</option>
+				    			<option ng-repeat="acctnameI  in acctnameList4" value="{{acctnameI}}"  placeholder="Please choose the license Category type">{{acctnameI}}</option> 
+						   </select>
+	  					</div>
+	  					<div class="col-sm-3"><input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="Start Date" ng-model= "startDate"  value="{{startDate}}"   data-date="" data-date-format="mm/dd/yyyy"	required/></div>
+	  					<!-- <div class="col-sm-2"> <input	id="today" type="text" onfocus="(this.type='date')"	class="form-control"  placeholder="End Date" ng-model= "endDate"  value="{{endDate}}"   data-date="" data-date-format="mm/dd/yyyy"	></div> -->
+	  					<div class="col-sm-3"><button type="submit" ng-disabled="!(acctName && startDate )" ng-click="expiredRegisterationFacilites(startDate,acctName)"  class="btn btn-block1"  >
+						<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Generate Expired Registration Facilities Report</button></div>
+  					</div>
+    
+    </uib-tab>
+  </uib-tabset>
+
+  
+  </div>
+</div>
+
+</body>
+</html>

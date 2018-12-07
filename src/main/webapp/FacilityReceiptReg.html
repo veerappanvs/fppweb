@@ -1,0 +1,123 @@
+<!-- <style type="text/css">
+   input-group-addon {
+   margin-left: 60%;
+   margin:auto;
+   }
+</style> -->
+<div class="container" ng-controller="FacilityReceiptRegCtrl" >
+   <form autocomplete="off" class="form-horizontal ng-pristine ng-invalid ng-invalid-required"   name="frm" ng-cloak>
+      <br>
+      <fieldset ng-disabled="isReadonly">
+      <h4 ng-show="data.hasInserted" ><span class="alert-success " class="text-center">Transaction  created.</span></h4>
+         <div class="form-group">
+            <div class="panel panel-default">
+               <div class="panel-heading">{{info.title}}</div>
+               <div class="panel-body" style="max-height: 40;">
+               	<div class="row">
+               	  <div>
+                 <!--  <label class="control-label col-sm-3" for="email">Batch Number:</label>
+                  <div class="col-sm-3">
+                     <input type="number" name="batch"  ng-maxlength="7" class="form-control" ng-model="data.batchNo"  value="{{data.batchNo}}"
+                     />
+                     <h4 ng-if="!frm.batch.$valid">Please specify 7 digit batch number</h4> -->
+                     
+                     <label class="control-label col-sm-3" for="email">Batch Number:</label>
+                  <div class="col-sm-3">
+                     <input type="number" name="batch"  ng-maxlength="7" class="form-control" ng-model="data.batchNo" value="{{data.batchNo}}" pattern="[0-9]{7}" />
+                     <h4 ng-if="!frm.batch.$valid">Please specify 7 digit batch number</h4>
+                     
+                  </div>
+              	  </div>
+                  <!-- data.receiptFeeDate -->
+                  <div ng-hide="checkregistry">
+                     <label class="control-label col-sm-3" for="email">Receipt of Fees Date:</label>
+                     <div class="col-sm-3" width="100%">
+                        <input	id="date" type="date"	class="form-control"  ng-model= "data.rcpfeedt" 
+                        value="{{data.rcpfeedt}}" 	data-date="" data-date-format="mm/dd/yyyy">
+                     </div>
+                     <br/>
+                  </div>
+
+
+              	  <div>
+                  <label class="control-label col-sm-3" for="email">Check Number:</label>
+                  <div class="col-sm-3" width="100%">
+                     <input type="text" name="checkNumber"  class="form-control" ng-model="data.checkno" value="{{data.checkno}}"  required />
+                    
+                  </div>
+              	  </div>
+
+
+              	  <div class="col-sm-6">
+                  <label class="control-label col-sm-6" for="email">Amount:</label>
+                  <div class="input-group col-sm-6"  width="100%" style="padding-left: 2.6%;" >
+                  	 <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                     <input id="email" type="text"  style='width:100%' 
+                     class="form-control"  ng-model="data.amount"  value = "{{data.amount}}"/>
+                  </div>
+              	  </div>
+
+
+          
+                  <div ng-hide="checkregistry">
+                     <label class="control-label col-sm-3" for="email">Certification Action:</label>
+                     <div class="col-sm-3" width="100%">
+                        <select  class="form-control"  ng-model="data.certaction" required>
+                           <option ng-repeat="certaction  in certaction" value="{{certaction}}">{{certaction}}</option>
+                        </select>
+                     </div>
+                  </div>
+
+                  <div ng-hide="checkregistry">
+                     <label class="control-label col-sm-3" >Print License </label>
+                     <div class="col-sm-3" width="100%" > 
+                     <!--    <input type="checkbox" ng-model="data.printed" ng-checked="data.printed==0" value="{{data.printed}}"  > -->
+                        <input type="checkbox" ng-model="printSelected" ng-checked="!(data.printed==1)"   value="printSelected" >
+                     </div>
+                  </div>
+
+           	</div>
+            </div>
+            <div>
+				  
+		  	</fieldset>
+		  	</form>
+			<div>
+			<div ng-hide="isEditEnabled">
+				<table class="table ">
+					<tr>
+						<td>
+						
+							<button type="submit"  ng-show="data.id == null" ng-click="addPerson()" class="btn btn-block"  class="col-sm-6"
+						 	data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+						 	aria-label="Close" ng-disabled="frm.$invalid"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Create</button>
+					 	</td>
+						
+					</tr>
+				</table>
+				</div>
+			</div> 
+			<div>	
+			<div ng-show="isEditEnabled">
+			 	<table class="table">
+			 		<tr>
+					<!-- 	<td><button type="button"  ng-hide="data.id == null" ng-click="editAppFn()" class="btn btn-block"  aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>   Edit Details</button></td> -->						
+						<td><button type="submit"  ng-hide="data.id == null" ng-click="editPerson()" class="btn btn-block " aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save</button></td>
+						<!-- <td><button type="button"  ng-hide="data.id == null" ng-click="removePerson()" class="btn btn-block " aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button></td> -->
+						<!-- <td><button type="button"  ng-hide="isReadonly== null || isReadonly || data.id == null" ng-click="markReadonly(true)"   class="btn btn-block " aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button></td> -->
+					
+					</tr>
+				</table>
+				</div>
+			</div>
+		<!--  <h4 ng-show="data.hasInserted" ><span class="alert-success " class="text-center">Reciept  created.</span></h4> -->
+		 
+		
+				<div>
+		<button type="submit" onclick="window.location.href='dashboard'" class="btn btn-block" aria-label="Close">
+			<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>		Back To Dashboard		</button>
+	</div>
+		
+	</div>
+
+</html>

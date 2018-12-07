@@ -1,0 +1,280 @@
+
+
+<style>
+.paddingleft10{
+margin-right:6px;
+}
+.minheight320{
+min-height: 440px;
+}
+.clearfix{
+height:10px;
+clear:both;
+width:100%;
+}
+.corpdet h5{
+	margin-right: -4px;
+    margin-left: -4px;
+    /* text-align: center; */
+    background: #e4e4e4;
+    padding: 5px;
+    margin-top: -4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+@media only screen and (min-width: 980px) {
+	.width30{
+	width:29.6%
+	}
+	.width31 {
+    width: 15%;
+	}
+	.width64{
+	    width: 64%;
+	 }
+}
+.subcantainer{
+	 max-width:760px;
+	 padding-left: 45px;
+}
+.form-group{
+margin-bottom:0px;
+}
+.minheight200{
+min-height:310px;
+}
+</style>
+<div class="" ng-controller="CorpRegViewCtrl">
+<div class="modal-header" >
+  <button type="button" class="close" ng-click="cancel()">&times;</button>
+  <h4 class="modal-title">Parent Corporation Details</h4>
+</div><div class="mymodel modal-body"> 
+<div class="{{modelEnabled?'subcantainer':'container'}}" >
+
+<!-- corp form start -->
+
+
+<div class="row corpdet">
+<fieldset ng-disabled="isReadonly">
+		<div class="col-md-12">
+			<div class="clearfix"></div>
+			<div class="form-group">
+				<div class="col-xs-3 col-md-2">
+				<div class="row"> <label for="corpname" class="">{{place_holder.corp_name}}</label>
+				</div>
+				</div>
+				
+				
+				
+					<div class="col-xs-9	col-md-10"><div class="row">
+				<input type="text" class="form-control" id="corpname"  ng-model="data.corpName" title="Corporation Name"
+				placeholder="{{place_holder.corp_name}}"></div></div>
+				<br><br>
+
+			</div>
+		</div>	
+		<div class="clearfix"></div>	
+
+		<div class="col-md-4 thumbnail paddingleft10 minheight200">
+			<div class="">
+				<h5>Address Details</h5>
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<!-- <div class="col-sm-4"><label for="corp_address1">{{place_holder.corp_address1}}</label></div> -->
+					<div class="col-sm-12"><input type="text" class="form-control" id="corp_address1"  ng-model="data.cMailadd1" title="Address Line 1"
+					placeholder="Address {{place_holder.corp_address1}}"></div>
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_address2">{{place_holder.corp_address2}}</label></div> -->
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="corp_address2"  ng-model="data.cMailadd2" title="Address Line 2"
+					placeholder="Address {{place_holder.corp_address2}}"></div>
+				</div>
+				
+				
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_address_city">{{place_holder.corp_address_city}}</label></div> -->
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="corp_address_city"  
+					ng-model="data.cMailcity" title="City" placeholder="{{place_holder.corp_address_city}}"></div>
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_address_state">{{place_holder.corp_address_state}}</label></div> -->
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="corp_address_state" 
+					ng-model="data.cMailstate" title="State" placeholder="{{place_holder.corp_address_state}}" minlength="2" maxlength="2">
+					<!-- <span ng-show="validation.cMailstate" class="error">Please Enter 2 Character Valid State Name.</span> -->
+					</div>
+
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_address_zip">{{place_holder.corp_address_zip}}</label></div> -->
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="corp_address_zip" 
+					ng-model="data.cMailzip" title="Zip" placeholder="{{place_holder.corp_address_zip}}"  maxlength="10">
+					<!-- <span ng-show="validation.cMailzip" class="error">Please Enter Valid 5 digit Zip Code </span> -->
+					</div>
+
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_address_country">{{place_holder.corp_address_country}}</label></div> -->
+					<div class="col-sm-12">
+					<!-- <input type="text" class="form-control" id="corp_address_country" 
+					ng-model="data.corp_address_country" title="Country" placeholder="{{place_holder.corp_address_country}}"> -->
+					
+					 <select class="form-control" id="corp_address_country"  
+					ng-model="data.corpCountry"   >
+	<option value="" >Please Select One Country</option>
+	<!-- <option ng-repeat="(key, value) in countries_key_value" value="{{key}}">{{value}}</option>	 -->			
+	 <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
+	</select>
+					<!-- onChange="alert('est'+this.value);" -->
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-8 thumbnail paddingleft10 minheight200 width64">
+			<div class="">
+				<h5>Contact Details</h5>
+				<div class="clearfix"></div>
+				<div class="col-sm-6">
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_lname">{{place_holder.corp_lname}}</label></div> -->
+					
+					<input type="text" class="form-control" id="corp_lname"  ng-model="data.cLast" title="Last Name"
+					placeholder="{{place_holder.corp_lname}}"></div>
+
+				</div>
+
+				<!-- <div class="clearfix"></div> -->
+				<div class="col-sm-6">
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_fname">{{place_holder.corp_fname}}</label></div> -->
+					
+					<input type="text" class="form-control" id="corp_fname"  ng-model="data.cFirst" title="First Name"
+					placeholder="{{place_holder.corp_fname}}"></div>
+
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="col-sm-6">
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_mname">{{place_holder.corp_mname}}</label></div> -->
+					
+					<input type="text" class="form-control" id="corp_mname"  ng-model="data.cMiddle" title="Middle Name"
+					placeholder="{{place_holder.corp_mname}}"></div>
+
+				</div>
+
+				<!-- <div class="clearfix"></div> -->
+				<div class="col-sm-6">
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_suffix">{{place_holder.corp_suffix}}</label></div> -->
+					
+					<input type="text" class="form-control" id="corp_suffix" title="Suffix"
+					ng-model="data.cSuffix" placeholder="{{place_holder.corp_suffix}}"></div>
+
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="col-sm-6">
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_title">{{place_holder.corp_title}}</label></div> -->
+					
+					<input type="text" class="form-control" id="corp_title" 
+					ng-model="data.cTitle" title="Title" placeholder="{{place_holder.corp_title}}"></div>
+
+				</div>
+
+				<!-- <div class="clearfix"></div> -->
+				<div class="col-sm-6">
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_phone">{{place_holder.corp_phone}}</label></div> -->
+					
+					<input type="text" class="form-control" id="corp_phone" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
+					ng-model="data.corpPhone" title="Phone" placeholder="{{place_holder.corp_phone}}" minlength="10" maxlength="10">
+					<!-- <span ng-show="validation.corpPhone" class="error">Please Enter Valid 10 digit Phone number</span> -->
+					</div>
+
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="col-sm-6">
+				<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_phone_ext">{{place_holder.corp_phone_ext}}</label></div> -->
+					<input type="text" class="form-control" id="corp_phone_ext" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
+					ng-model="data.corpPhoneExt" title="Phone-Ext" placeholder="{{place_holder.corp_phone_ext}}" minlength="0" maxlength="10">
+				<!-- 	<span ng-show="validation.corpPhoneExt" class="error">Please Enter Valid 10 digit Phone number</span> -->
+					</div>
+
+				</div>
+
+				<!-- <div class="clearfix"></div> -->
+				<div class="col-sm-6">
+					<div class="form-group">
+					<!-- <div class="col-sm-4"> <label for="corp_email">{{place_holder.corp_email}}</label></div> -->
+					<input type="text" class="form-control" id="corp_email" 
+					ng-model="data.corpEmail" title="Email" placeholder="{{place_holder.corp_email}}"></div>
+
+				</div>
+					<div class="clearfix"></div>
+					
+				<div class="col-sm-12">
+					<div class="form-group">
+					<textarea class="form-control" id="corp_prt_cmts" 
+					ng-model="data.cComments" title="Comments" placeholder="{{place_holder.corp_prt_cmts}}" style="height:70px;"></textarea></div>
+
+				</div>				
+				
+			</div>
+		</div>
+
+<!-- 		<div class="col-md-4 thumbnail paddingleft10 width30 minheight200">
+			<div class="">
+				<h5>Comments</h5>
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<textarea class="form-control" id="corp_prt_cmts" 
+					ng-model="data.cComments" placeholder="{{place_holder.corp_prt_cmts}}" style="height:240px;"></textarea></div>
+
+				</div>
+			</div>
+		</div> -->
+
+</fieldset>
+<!-- 
+<div ng-if="reportcorpEnable" ui-grid="gridOptions" ui-grid-exporter="" ui-grid-resize-columns="" ui-grid-edit="" 
+class="grid" style="max-height: 160px;"></div> -->
+<h5 class="text-center" style="    margin: 0px;">Facility Details</h5>
+<div id="grid2" ui-grid="gridOptions" ui-grid-tree-view class="grid" style="max-height: 160px;"></div> 
+<div class=" text-center" >
+		<div class="col-md-12 text-center">
+		<div ><p ng-if="validation.status" class="error"> Please fill with valid Details </p></div>
+			<button class="btn "  ng-click="Editable()"> Edit</button>
+			<button ng-disabled="!(data.corpName)" class="btn " ng-click="save()"> Save</button>
+		</div>
+
+<!-- corp form end -->
+</div>
+
+
+
+
+</div>
+
+
+</div></div></div>

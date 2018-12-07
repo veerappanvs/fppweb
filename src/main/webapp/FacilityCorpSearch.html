@@ -1,0 +1,88 @@
+
+
+<div class="container" ng-controller="FacilityCorpSearchCtrl">
+<!-- search form start -->
+<form>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="">
+			<input type="checkbox" id="facilityCheckbox"  ng-model="search.facility" >
+			<label for="facilityCheckbox">Please select the Check box for Corporation Search</label>
+			</div>
+		</div>
+		<!-- <div class="col-md-3">
+			<button class="btn btn-primary pull-left" ng-click="doSearch()">Search</button>
+		</div> -->
+	</div>
+	
+	<div class="row">
+		<div class="col-md-2">
+			<div class="form-group">
+				<!-- <input type="text" ng-readonly="search.facility" class="form-control" name="search.license_type" ng-model="search.license_type" 
+				placeholder="{{place_holder.license_type}}"> -->
+				<select  class="form-control" ng-readonly="search.facility" ng-model="search.license_type" >
+                        <option ng-repeat="license_type  in license_type" value="{{license_type}}">{{license_type==''?'select license type':license_type}}</option>
+                </select> 
+                
+               <!--  <select class="form-control" ng-readonly="search.facility" ng-model="search.license_type" onChange="alert('est'+this.value);"
+					title="Please Select facility Type" ng-change="selectChange()" >
+	<option value="" >Please Select facility Type</option>
+	<option ng-repeat="(key, value) in countries_key_value" value="{{key}}">{{value}}</option>				
+	 <option ng-repeat="LicenseType in license_type" value="{{LicenseType.code}}">{{LicenseType.name}}</option>
+	</select> -->
+                
+                
+			</div>
+		</div>
+		
+		<!-- <div>
+              <label class="control-label col-sm-3" for="email">License Category Type:</label>
+                  <div class="col-sm-3" width="100%">
+                     <select  class="form-control"  ng-model="data.accountName" required>
+                        <option ng-repeat="accountName  in accountName" value="{{accountName}}">{{accountName}}</option>
+                     </select>
+                  </div>
+                  </div>
+	 -->	
+		
+		<div class="col-md-3">
+			<div class="form-group">
+				<input type="text" ng-readonly="search.facility" class="form-control" name="search.license_no" ng-model="search.license_no" 
+				placeholder="{{place_holder.license_no}}">
+			</div>
+		</div>
+		
+		<div class="col-md-3">
+			<div class="form-group">
+				<input type="text" class="form-control" name="search.name" ng-model="search.name" 
+				placeholder="{{place_holder.name}}">
+			</div>
+		</div>
+		
+		
+		<div class="col-md-3">
+			<div class="form-group">
+				<input type="text" class="form-control" name="search.address" ng-model="search.address" 
+				placeholder="{{place_holder.address}}">
+			</div>
+		</div>
+		 <div class="col-md-1">
+			<button class="btn  pull-left" ng-click="doSearch()">Search</button>
+		</div>
+		
+	</div>
+	
+<!-- search form end -->
+
+
+
+</form>
+
+<div class="row">
+	 <div id="grid2" ui-grid="gridOptionsCorp" ui-grid-tree-view ui-grid-edit class="grid" ng-if="reportfacEnable"></div> 
+	 <div id="grid1" ui-grid="gridOptions" ui-grid-expandable  ui-grid-edit class="grid" ng-if="reportcorpEnable" ></div>
+</div>
+
+
+
+</div>

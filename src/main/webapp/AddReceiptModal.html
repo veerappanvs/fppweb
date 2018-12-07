@@ -1,0 +1,267 @@
+<!-- <style type="text/css">
+   input-group-addon {
+   margin-left: 60%;
+   margin:auto;
+   }
+</style> -->
+
+<!-- <div id="myModal" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body" class="container">
+ -->
+
+<div   class="modal-body">  <!-- ng-controller="AddRecieptCtrl" -->
+   <form autocomplete="off" class="form-horizontal ng-pristine ng-invalid ng-invalid-required"   name="frm" ng-cloak>
+      <br>
+      <fieldset ng-disabled="isReadonly">
+      <h4 ng-show="data.hasInserted" ><span class="alert-success " class="text-center">Reciept  created.</span></h4>
+         <div class="form-group">
+            <div class="panel panel-default">
+               <div class="panel-heading">{{info.title}}</div>
+               <div class="panel-body" style="max-height: 40;">
+                <div class="row">
+                  <div>
+                  <label class="control-label col-sm-3" for="email">Batch Number:</label>
+                  <div class="col-sm-3">
+                     <input type="number" name="batch"  ng-maxlength="7" class="form-control" ng-model="data.batchNumber" value="{{data.batchNumber}}" pattern="[0-9]{7}" />
+                     <h4 ng-if="!frm.batch.$valid">Please specify 7 digit batch number</h4>
+                  </div>
+                  </div>
+                  <!-- data.receiptFeeDate -->
+                  <div ng-hide="checkregistry">
+                     <label class="control-label col-sm-3" for="email">Receipt of Fees Date:</label>
+                     <div class="col-sm-3" width="100%">
+                        <input  id="today" type="date"  class="form-control"  ng-model= "receiptFeeDate"  value="{{receiptFeeDate}}"   data-date="" data-date-format="mm/dd/yyyy" >
+                     </div>
+                     <br/>
+                  </div>
+                  <div ng-hide="checkregistry">
+                     <label class="control-label col-sm-3" for="email">Revenue Source Code:</label>
+                     <div class="col-sm-3" width="100%">
+                        <input class="form-control" id="accountNumber" name="accountNumber"   value="{{data.accountNumber}}" ng-model="data.accountNumber"  required/>
+                        
+                     </div>
+                  </div>
+                  <!-- <br/> --> 
+                  <div>
+                  <label class="control-label col-sm-3" for="email">License Category Type:</label>
+                  <div class="col-sm-3" width="100%">
+                     <select class="form-control" id="accountName"  ng-model="data.accountName" ng-change="getProductsforCat(1)" required>
+						<option ng-repeat="ProdCategoryval in ProdCategory" value="{{ProdCategoryval}}">{{ProdCategoryval==''?place_holder.accountName:ProdCategoryval}}</option>
+					</select>
+                  </div>
+                  </div>
+
+               <!--    <div ng-hide="checkregistry">
+                     <label class="control-label col-sm-3" for="email">Scan Check Number:</label>
+                     <div class="col-sm-3" width="100%">
+                        <input class="form-control" name="scanPrintKey"   value="{{data.scanPrintKey}}" ng-model="data.scanPrintKey" required />
+                     </div>
+                  </div> -->
+
+                  <div>
+                  <label class="control-label col-sm-3" for="email">Check Number:</label>
+                  <div class="col-sm-3" width="100%">
+                     <input type="text" name="checkNumber"  class="form-control" ng-model="data.checkNumber" value="{{data.checkNumber}}" required />
+                     <span ng-show="frm.checkNumber.$error.required" class="help-inline"></span>
+                  </div>
+                  </div>
+
+<!--                  <div>
+                  <label class="control-label col-sm-3" for="email">Amount:</label>
+                  <div class="input-group col-sm-3" width="100%" style="padding-left: 1.4%;">
+                     <span class="input-group-addon" style="padding:6px 6px;"><i class="glyphicon glyphicon-usd"></i></span>
+                     <input id="email" type="number" style='width:94%' step="0.01" ng-size={{size}} ng-value="300.00"  class="form-control" size="5" ng-model="data.amount" value="{{data.amount}}"  />
+                  </div>
+                  </div>
+
+
+                  <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+            </div>
+ -->
+                  <div class="col-sm-6">
+                  <label class="control-label col-sm-6" for="email">Amount:</label>
+                  <div class="input-group col-sm-6"  width="100%" style="padding-left: 2.6%;" >
+                     <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                     <input id="email" type="number"  style='width:100%' step="0.01" ng-size={{size}} class="form-control" size="5" ng-model="data.amount" value="{{data.amount}}" />
+                  </div>
+                  </div>
+
+		<div>
+                  <label class="control-label col-sm-3" for="email">Applicant Name:</label>
+                  <div class="col-sm-3" width="100%" ng-init=data.status='RECEIVED'>
+                     <input class="form-control" name="applicant"  value="{{data.applicant}}" ng-model="data.applicant">
+                     <span ng-show="frm.payer.$error.required" class="help-inline"></span> 
+                  </div>
+              	  </div>
+              	  
+
+                  <!-- <div >
+                     <label class="control-label col-sm-3" for="email" style="padding-right: 9px">Applicant Facility Name:</label> data.appfacyname
+                     <div class="col-sm-3" width="100%">
+                        <input class="form-control" name="appfacyname" ng-change="showSearchResults(appfacyname)"  value="{{data.appfacyname}}" ng-model="data.appfacyname"  required />
+                        <div style="max-height: 400px;overflow-y: scroll;z-index: 999;position: absolute;">
+             <ui class="list-group" >style="z-index: 999;position: absolute;"
+                <li class="list-group-item" ng-repeat="facName in facilityNameArr track by $index" ng-click="fillFacilityNameTextBox(facName)">
+                {{facName}}
+                           </li>
+                        </ui>
+                      </div>
+                     </div>
+                  </div>
+
+                  <div ng-hide="checkregistry">
+                  <label class="control-label col-sm-3" for="email">Applicant Id:</label>
+                  <div class="col-sm-3" width="100%">
+               <input class="form-control" name="appfacid"   value="{{data.appfacid}}" ng-model="data.appfacid"  />
+           
+            </div>
+                  </div> -->
+                  <div>
+                  <label class="control-label col-sm-3" for="email">Payer Name:</label>
+                  <div class="col-sm-3" width="100%" ng-init=data.status='RECEIVED'>
+                     <input class="form-control" name="payer"  value="{{data.payer}}" ng-model="data.payer">
+                     <span ng-show="frm.payer.$error.required" class="help-inline"></span> 
+                  </div>
+                  </div>
+                  <div>
+                  <label class="control-label col-sm-3" for="email">Transaction Status:</label>
+                  <div class="col-sm-3" width="100%">
+                     <select class="form-control"  ng-model="data.status" required>
+                        <option ng-repeat="status in status" value="{{status}}">{{status}}</option>
+                     </select>
+                  </div>
+                  </div>
+                  <div ng-hide="checkregistry">
+                     <label class="control-label col-sm-3" for="email">Certification Action:</label>
+                     <div class="col-sm-3" width="100%">
+                        <select  class="form-control"  ng-model="data.certification" >
+                           <option ng-repeat="certification  in certification" value="{{certification}}">{{certification}}</option>
+                        </select>
+                     </div>
+                  </div>
+
+                  
+                 
+                  <!-- <div ng-hide="checkregistry">
+                     <label class="control-label col-sm-3">Print the License</label>
+                     <div class="col-sm-3" width="100%"> 
+                        <input type="checkbox">
+                     </div>
+                  </div> -->
+                  <div ng-show="checkregistry">
+                     <label class="control-label col-sm-3" for="email">Entry Time:</label>
+                     <div class="col-sm-3" width="100%">
+                        <input class="form-control" ng-model="data.dateReceived" value="{{data.dateReceived}}"  >
+                     </div>
+                  </div>
+                  <div ng-show="checkregistry">
+                     <label class="control-label col-sm-3" for="email">Status Updated Date:</label>
+                     <div class="col-sm-3" width="100%">
+                        <input  class="form-control" ng-model="data.statusUpdate" value="{{data.statusUpdate}}">
+                     </div>
+                  </div>
+                  <div ng-show="checkregistry">
+                     <label class="control-label col-sm-3" for="email">Transmittal By:</label>
+                     <div class="col-sm-3" width="100%">
+                        <input class="form-control" ng-model="data.runBy" value="{{data.runBy}}" >
+                     </div>
+                  </div>
+                  <div ng-show="checkregistry">
+                     <label class="control-label col-sm-3" for="email">Transmittal Date:</label>
+                     <div class="col-sm-3" width="100%">
+                        <input  class="form-control" ng-model="data.transmittalDate" value="{{data.transmittalDate}}" >
+                     </div>
+                  </div>
+                  <div ng-show="checkregistry">
+                     <label class="control-label col-sm-3" for="email">Opened By:</label>
+                     <div class="col-sm-3" width="100%">
+                        <input class="form-control" ng-model="data.openedBy" value="{{data.openedBy}}" >
+                     </div>
+                  </div>
+                  <div>
+                  <label class="control-label col-sm-3" for="email">Comments:</label>
+                  <div class="col-sm-3" width="100%">
+                    <textarea class="form-control" ng-model="data.commentOntheFacility">{{data.commentOntheFacility}}</textarea>
+                  </div>
+                  </div>
+               </div>
+               </div>
+
+
+            </div>
+            </div>
+            <div>
+          
+      
+        
+        </fieldset>
+        </form>
+      <div>
+      <div ng-hide="checkregistry">
+        <table class="table ">
+          <tr>
+            <td>
+            
+              <button type="submit"  ng-show="data.id == null" ng-click="addPerson()" class="btn btn-block"  class="col-sm-6"
+              data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+              aria-label="Close" ng-disabled="frm.$invalid"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Create</button>
+            </td>
+            <td>
+              <button type="submit"  ng-show="data.id == null" ng-click="reset()" class="btn btn-block"   class="col-sm-6"
+              data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+              aria-label="Close" ng-disabled="frm.$invalid"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Reset</button>
+            </td>
+          
+              <td>
+              <button type="submit"  ng-show="data.id == null" ng-click="back()" class="btn btn-block"  class="col-sm-6"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  cancel</button>
+            
+            
+            </td>
+            
+            <td>
+              <button type="submit"  ng-show="data.id == null" ng-click="addTransaction()" class="btn btn-block"  class="col-sm-6"
+              data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+              aria-label="Close" ng-disabled="frm.$invalid"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Add Transaction</button>
+            </td>
+            
+          </tr>
+        </table>
+        </div>
+      </div> 
+      <div> 
+      <div ng-hide="checkregistry">
+        <table class="table">
+          <tr>
+            <td><button type="button"  ng-hide="data.id == null" ng-click="editPerson()" class="btn btn-block"  aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>   Edit Details</button></td>
+            <!-- <td><button type="submit"  ng-hide="data.id == null" ng-click="savePerson()" class="btn btn-block " aria-label="Close" ng-disabled="frm.$invalid" class="col-sm-3" ><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save</button></td> -->
+            <td><button type="submit"  ng-hide="data.id == null" ng-click="savePerson()" class="btn btn-block " aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save</button></td>
+            <td><button type="button"  ng-hide="data.id == null" ng-click="removePerson()" class="btn btn-block " aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button></td>
+            <td><button type="button"  ng-hide="isReadonly== null || isReadonly || data.id == null" ng-click="markReadonly(true)"   class="btn btn-block " aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button></td>
+          
+          </tr>
+        </table>
+        </div>
+      </div>
+    <!--  <h4 ng-show="data.hasInserted" ><span class="alert-success " class="text-center">Reciept  created.</span></h4> -->
+     
+    
+        <div>
+    <button type="submit" onclick="window.location.href='dashboard'" class="btn btn-block" aria-label="Close">
+      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>   Back To Dashboard   </button>
+  </div>
+    
+  </div>
+
+
+<!--          </div>
+      </div>
+   </div>
+</div>
+ -->

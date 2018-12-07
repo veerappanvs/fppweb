@@ -1,0 +1,179 @@
+<div  >
+		<div>
+		 <button type="submit"  ng-show="detail.id == null" onclick="window.location.href='dashboard'" class="btn btn-block" 
+						 data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+						 aria-label="Close"   ><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true"></span>  Back To dashboard</button>
+		</div>
+		
+		<form class="form-horizontal ng-pristine ng-invalid ng-invalid-required"   name="frm" ng-cloak>
+		
+			<div >
+				<table class="table">
+					<tr>
+						<td>
+						 <button type="submit"  ng-show="detail.id == null" ng-click="addPerson()" class="btn btn-block" 
+						 data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+						 aria-label="Close" ng-disabled="frm.$invalid"   ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Create App</button>
+						 </td>
+						 <td>
+						 <button type="submit"  ng-show="detail.id == null" ng-click="reset()" class="btn btn-block" 
+						 data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+						 aria-label="Close" ng-disabled="frm.$invalid"   ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Reset</button>
+						 </td>
+						 <td>
+						 <button type="submit"  ng-show="detail.id == null" ng-click="window.location.href='#!detail'" class="btn btn-block" 
+						 data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+						 aria-label="Close"   ><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true"></span>  Back To search</button>
+						 </td>
+					 </tr>
+				 </table>
+			</div>
+	
+	
+			<div align="center">
+				  <button type="button"  ng-hide="detail.id == null" ng-click="editAppFn()" class="btn   " aria-label="Close"   ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>   Edit App</button>
+				  <button type="submit"  ng-hide="detail.id == null" ng-click="savePersonDetail()" class="btn  " ng-disabled="frm.$invalid"  aria-label="Close"   ><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save</button>
+				  <button type="button"  ng-hide="isReadonly== null || isReadonly || detail.id == null" ng-click="markReadonlyDetail(true)"   class="btn  " aria-label="Close"   ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+				  <button type="button"  ng-hide="detail.id == null" ng-click="removePersonDetail()" data-toggle="confirmation"  class="btn  " aria-label="Close"  ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+				  <button type="submit"  ng-hide="detail.id == null" ng-click="window.location.href='#!detail'"  data-dismiss="modal"   class="btn "><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true"></span>  Back To Search</button>
+			</div>
+			<br>
+			
+			
+		  <fieldset ng-disabled="isReadonly">	
+			  <div class="form-group">
+			  
+		  	   <div class="panel panel-default">
+	     			  <div class="panel-heading">Corp/Fac Details</div>
+				<div class="panel-body">
+			  
+					  <div ng-show="detail.id != null">
+					  	<label class="control-label col-sm-3" for="email">Corp Id:</label>
+					    <div class="col-sm-9">
+					      <!-- <p class="form-control-static">{{detail.bureau}}</p> -->
+					      <input class="form-control" ng-model="detail.id" value="{{detail.id}}" readonly>
+					    </div>
+					    <br/>
+					  </div>
+					  
+					 	<label class="control-label col-sm-3" for="email">Corp Name:</label>
+					    <div class="col-sm-9">
+					      <!-- <p class="form-control-static">{{detail.bureau}}</p> -->
+					      <input class="form-control" name ="appName" ng-model="detail.corpName" value="{{detail.corpName}}" ng-readonly="isEditEnabled"   >
+					       <div class="field-message alert alert-danger " ng-messages="frm.appName.$error" ng-show="frm.appName.$invalid" ng-cloak>
+			                    <div ng-message="required">Name is required</div>
+			       
+			                  </div>
+					        
+					    </div>
+					    <br/>
+					  
+					  
+					    <label class="control-label col-sm-3" for="email">Corp Address:</label>
+					    <div class="col-sm-9">
+					      <!-- <p class="form-control-static">{{detail.bureau}}</p> -->
+					      <input class="form-control"   name="bureau" ng-model="detail.bureau" value="{{detail.bureau}}" required ng-minlength="3"  ng-pattern ="/^[a-zA-Z-\s]*$/">
+					      <div class="field-message alert alert-danger "    ng-messages="frm.bureau.$error" ng-show="frm.bureau.$invalid && frm.bureau.$touched" ng-cloak>
+			                    <p ng-message="required">Bureau is required</p>
+			                    <p ng-message="minlength">Bureau must have minimum 3 characters. Only Alphabets and  - is allowed</p>
+			                  </div>
+					    </div>
+					    <br/>
+					    
+					 						
+						<label class="control-label col-sm-3" for="email">App accessible from public internet :</label>
+					    <div class="col-sm-9">
+					    	<select  class="form-control"  ng-model="detail.internetAccessibility" >
+					    		<option ng-repeat="internetAccessibilityyesno in yesnos" value="{{internetAccessibilityyesno}}">{{internetAccessibilityyesno}}</option> 
+					    	</select>
+						</div>
+							
+						</div>
+						
+					</div>
+					</div>
+				 	<div>
+		    			<label>  	</label>
+		    		</div>	
+						
+					<div class="panel panel-default">
+					<div class="panel-heading  ">Security Assessment</div>
+						<div class="panel-body"> 
+						
+								<label class="control-label col-sm-3" for="email">Confidentiality
+									:</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="detail.confidentiality">
+										<option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+									</select>
+								</div>
+								<br /> <label class="control-label col-sm-3" for="email">Integrity
+									:</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="detail.integrity">
+										<option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+									</select>
+								</div>
+								<br /> <label class="control-label col-sm-3" for="email">Availability
+									:</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="detail.availability">
+										<option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+									</select>
+								</div>
+								<br /> <label class="control-label col-sm-3" for="email">Overall_Rating
+									:</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="detail.overallRating">
+										<option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+									</select>
+								</div>
+								<br /> <label class="control-label col-sm-3" for="email">Critical_Or_NonCritical
+									:</label>
+								<div class="col-sm-9">
+									<select class="form-control"
+										ng-model="detail.criticalOrNonCritical">
+										<option ng-repeat="critical in criticals" value="{{critical}}">{{critical}}</option>
+									</select>
+								</div>
+								<br />
+							</div>
+						</div>
+
+					</div></fieldset>
+		  	
+			<div >
+				<table class="table">
+					<tr>
+						<td>
+						 <button type="submit"  ng-show="detail.id == null" ng-click="addPerson()" class="btn btn-block" 
+						 data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+						 aria-label="Close" ng-disabled="frm.$invalid"   ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Create App</button>
+						 </td>
+						 <td>
+						 	 <button type="submit"  ng-show="detail.id == null" ng-click="reset()" class="btn btn-block" 
+						 data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+						 aria-label="Close" ng-disabled="frm.$invalid"   ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Reset</button>
+						 </td>
+						 <td>
+						 <button type="submit"  ng-show="detail.id == null" ng-click="window.location.href='dashboard'" class="btn btn-block" 
+						 data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+						 aria-label="Close"   ><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>  Back To search</button>
+						 </td>
+					 </tr>
+				 </table>
+			</div>
+	
+	
+			<div align="center">
+				  <button type="button"  ng-hide="detail.id == null" ng-click="editAppFn()" class="btn   " aria-label="Close"   ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>   Edit App</button>
+				  <button type="submit"  ng-hide="detail.id == null" ng-click="savePersonDetail()" class="btn  " ng-disabled="frm.$invalid"  aria-label="Close"   ><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save</button>
+				  <button type="button"  ng-hide="isReadonly== null || isReadonly || detail.id == null" ng-click="markReadonlyDetail(true)"   class="btn  " aria-label="Close"   ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+				  <button type="button"  ng-hide="detail.id == null" ng-click="removePersonDetail()" data-toggle="confirmation"  class="btn  " aria-label="Close"  ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+  				  <button type="submit"  ng-hide="detail.id == null" ng-click="window.location.href='#!detail'"  data-dismiss="modal"   class="btn "><span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true"></span>  Back To search</button>
+			</div>
+		</form>
+		
+</div>
+
+	

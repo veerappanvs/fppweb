@@ -1,0 +1,664 @@
+<style>
+.paddingleft10{/* 
+margin-right:10px; */
+margin-left:10px;
+margin-right:0px;
+}
+
+.minheight320{
+min-height: 320px;
+}
+
+.minheight160{
+min-height: 200px;
+}
+.minheight200{
+min-height: 205px;
+}
+.clearfix{
+height:5px;
+clear:both;
+width:100%;
+}
+.icbtn {
+    width: 23px;
+    float: left;
+    padding: 0;
+}
+.withoutborder{
+	border: 0 !important;
+}
+.corpdet h5,.facdet h5{
+	margin-right: -4px;
+    margin-left: -4px;
+    /* text-align: center; */
+    background: #e4e4e4;
+    padding: 5px;
+    margin-top: -4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.gridBtns{
+margin-top: 10px;
+    margin-bottom: 10px;
+}
+@media only screen and (min-width: 980px) {
+	.width30{
+	width:29.6%
+	}
+	.width31 {
+    width: 15%;
+	}
+	.width64{
+	    width: 64%;
+	 }
+}
+/* 
+.table-fixed thead {
+  width: 98%;
+}
+.table-fixed tbody {
+  height: 100px;
+  overflow-y: auto;
+  width: 98%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+  
+} 
+.table-fixed tbody td, .table-fixed thead > tr> th {
+
+  border-bottom-width: 0;
+  
+}
+.table-fixed tbody td{
+height:50px;
+}
+.table-fixed tbody td a,p{
+font-size:12px;
+} */
+.modal .modal-dialog {
+    width: 170vh !important;
+}
+
+.facmodel .paddingleft10 {
+    margin-right:0px !important;
+}
+</style>
+<!-- fac form start -->
+<div class="facmodel">
+<div class="modal-header">
+	         <button type="button" class="close" ng-click="cancel()">&times;</button>
+	         <h4 class="modal-title">Parent Corporation Details</h4>
+	       </div><div class="mymodel modal-body">
+	       
+<div class="" ng-controller="FacilityRegViewCtrl">
+<div>
+<fieldset ng-disabled="isReadOnly" ng-init="isReadOnly=1">
+
+<div class="row corpdet">
+		<div class="col-md-9">
+			<div class="clearfix"></div>
+			<div class="form-group"><div class="col-xs-12	col-md-12"><div class="row">
+				<input type="text" class="form-control" id="corpname" ng-readonly="true" ng-model="data.facreg.corp.corpName" 
+				placeholder="{{place_holder.corp_name}}" title="{{place_holder.corp_name}}">
+				 
+				
+				</div></div>
+				
+				<br><br>
+
+			</div>
+		</div>
+		
+		
+	<!-- 	<div class="col-md-3 text-right">
+	 
+		<input title="Default Mailing Address" type="checkbox" id="fan_checkbox" ng-model="sameAddress" ng-change="sameAddress && update()">
+		<label for="fan_checkbox">Default</label>
+	</div> -->	
+		
+		<div class="clearfix"></div>	
+
+		<div class="col-md-4 thumbnail paddingleft10 minheight200">
+			<div class="">
+				<h5>Address Details</h5>
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12"><input type="text" class="form-control" id="corp_address1" ng-readonly="true" ng-model="data.facreg.corp.cMailadd1" ng-change="sameAddress && update()"
+					placeholder="Address {{place_holder.corp_address1}}" title="Address {{place_holder.corp_address1}}" ></div>
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="corp_address2" ng-readonly="true" ng-model="data.facreg.corp.cMailadd2" ng-change="sameAddress && update()"
+					placeholder="Address {{place_holder.corp_address2}}" title="Address {{place_holder.corp_address2}}"></div>
+				</div>
+				
+				
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-6">
+					<input type="text" class="form-control" id="corp_address_city" ng-readonly="true"  
+					ng-model="data.facreg.corp.cMailcity" ng-change="sameAddress && update()" placeholder="{{place_holder.corp_address_city}}" title="{{place_holder.corp_address_city}}"></div>
+					<div class="col-sm-6">
+					<input type="text" class="form-control" id="corp_address_state" ng-readonly="true" 
+					ng-model="data.facreg.corp.cMailstate" ng-change="sameAddress && update()"  placeholder="{{place_holder.corp_address_state}}" title="{{place_holder.corp_address_state}}"></div>
+
+					
+
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+
+					<div class="col-sm-6">
+					
+					 <select class="form-control" id="corp_address_country" ng-disabled="true" 
+					ng-model="data.facreg.corp.corpCountry"  ng-change="sameAddress && update()" >
+	<option value="" >Please Select One Country</option>
+	<!-- <option ng-repeat="(key, value) in countries_key_value" value="{{key}}">{{value}}</option>	 -->			
+	 <option ng-repeat="country in countries1" value="{{country.code}}">{{country.name}}</option>
+	</select></div>
+
+<div class="col-sm-6">
+					<input type="text" class="form-control" id="corp_address_zip" ng-readonly="true" 
+					ng-model="data.facreg.corp.cMailzip" ng-change="sameAddress && update()" placeholder="{{place_holder.corp_address_zip}}"  title="{{place_holder.corp_address_zip}}"></div>
+
+					
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-8 thumbnail paddingleft10 minheight200 width64">
+			<div class="">
+				<h5>Contact Details</h5>
+				<div class="clearfix"></div>
+					<div class="col-md-6">
+
+<div class="row">
+				<div class="form-group">
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="corp_lname" ng-readonly="true" ng-model="data.facreg.corp.cLast" 
+					placeholder="{{place_holder.corp_lname}}" title="{{place_holder.corp_lname}}"></div>
+
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="corp_fname" ng-readonly="true" ng-model="data.facreg.corp.cFirst" 
+					placeholder="{{place_holder.corp_fname}}" title="{{place_holder.corp_fname}}"></div>
+
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="corp_mname" ng-readonly="true" ng-model="data.facreg.corp.cMiddle" 
+					placeholder="{{place_holder.corp_mname}}" title="{{place_holder.corp_mname}}"></div>
+
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-6">
+					<input type="text" class="form-control" id="corp_suffix" ng-readonly="true" 
+					ng-model="data.facreg.corp.cSuffix" placeholder="{{place_holder.corp_suffix}}" title="{{place_holder.corp_suffix}}"></div>
+					
+					<div class="col-sm-6">
+					<input type="text" class="form-control" id="corp_title" ng-readonly="true" 
+					ng-model="data.facreg.corp.cTitle" placeholder="{{place_holder.corp_title}}" title="{{place_holder.corp_title}}"></div>
+				</div>
+
+</div>
+			</div>
+
+			<div class="col-md-6">
+			<div class="row">
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<textarea class="form-control" id="corp_prt_cmts" ng-readonly="true" 
+					ng-model="data.facreg.corp.cComments" placeholder="{{place_holder.corp_prt_cmts}}" title="{{place_holder.corp_prt_cmts}}" style="height:70px;"></textarea>  </div>
+				</div>
+
+				
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-6">
+					<input type="text" class="form-control" id="corp_phone" ng-readonly="true" 
+					ng-model="data.facreg.corp.corpPhone" ng-change="sameAddress && update()" placeholder="{{place_holder.corp_phone}}" title="{{place_holder.corp_phone}}"></div>
+					<div class="col-sm-6">
+					<input type="text" class="form-control" id="corp_phone_ext" ng-readonly="true" 
+					ng-model="data.facreg.corp.corpPhoneExt" ng-change="sameAddress && update()" placeholder="{{place_holder.corp_phone_ext}}" title="{{place_holder.corp_phone_ext}}"></div>
+
+				</div>
+
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="corp_email" ng-readonly="true" 
+					ng-model="data.facreg.corp.corpEmail" ng-change="sameAddress && update()" placeholder="{{place_holder.corp_email}}" title="{{place_holder.corp_email}}"></div>
+				</div>
+				
+				</div>
+				
+			</div>
+
+			</div>
+		</div>
+</div>
+
+
+<div class="row facdet">
+		<div class="col-md-12">
+		<div class="row">
+<!-- 			<div class="clearfix"></div>
+			<div class="form-group">
+				<div class="col-md-4">
+					<div class="row">
+						<input type="text" class="form-control" id="corp_id"  ng-model="fac.corp_id" 
+						placeholder="{{place_holder.corp_id}}">
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="row">
+						<input type="text" class="form-control" id="corp_id"  ng-model="fac.corp_name" 
+						placeholder="{{place_holder.corp_name}}">
+					</div>
+				</div>
+			</div> -->
+			<div class="clearfix"></div>
+			<div class="form-group">
+				<div class="col-md-3">
+					<div class="">
+						<input type="text" class="form-control"  ng-model="data.facreg.facilities.facilityName" 
+						placeholder="{{place_holder.dba}}" title="{{place_holder.dba}}" >
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="">
+						<!-- <select class="form-control" ng-model="data.facreg.facilities.facType" title="Please Select facility Type" ng-change="selectChange()">
+							<option value="">Please Select facility Type</option>
+							<option ng-repeat="LicenseType in LicenseType" value="{{LicenseType}}">{{LicenseType}}</option>
+						</select> -->
+					
+					<select class="form-control" ng-model="data.facreg.fclass.facClass" 
+					title="Please Select facility Type" ng-change="selectChange()" >
+	<option value="" >Please Select facility Type</option>
+	<!-- <option ng-repeat="(key, value) in countries_key_value" value="{{key}}">{{value}}</option>	 -->			
+	 <option ng-repeat="LicenseType in LicenseType" value="{{LicenseType.code}}">{{LicenseType.name}}</option>
+	</select>
+					
+					
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="">
+						<input  type="text" onfocus="(this.type='date')" class="form-control"  ng-model="data.facreg.facilities.inspectionCompletedDate"  
+						 placeholder="{{place_holder.incDate}}" title="{{place_holder.incDate}}" >
+					</div>
+					<!-- <div class="">
+						<input  type="date"  class="form-control"  ng-model="data.facreg.facilities.inspectionCompletedDate"  value="{{data.facreg.facilities.inspectionCompletedDate}}"  data-date="" data-date-format="mm/dd/yyyy" >
+					</div>  -->
+					
+				</div>
+<!-- data-date-format="mm/dd/yyyy" -->
+				<div class="col-md-3">
+					<div class="">
+						<!-- <select class="form-control" ng-model="data.facreg.facilities.facilityStatus" title="Please Select Your Status">
+							<option value="">Please Select Status</option>
+							<option ng-repeat="status in status" value="{{status}}">{{status}}</option>
+						</select> -->
+						
+						<select class="form-control" ng-model="data.facreg.facilities.facilityStatus" title="Please Select Status" >
+	<option value="" >Please Select Status</option>
+	<!-- <option ng-repeat="(key, value) in countries_key_value" value="{{key}}">{{value}}</option>	 -->			
+	 <option ng-repeat="status in status" value="{{status.code}}">{{status.name}}</option>
+	</select>
+						
+						
+					</div>
+				</div>
+
+		</div>
+			</div>
+		</div>	
+		<div class="clearfix"></div>	
+
+		<div class="col-md-4 thumbnail paddingleft10 minheight320">
+			<div class="">
+				<h5>Facility Address</h5>
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12"><input type="text" class="form-control" id="fac_address1"  ng-model="data.facreg.facilities.facilityAddress1" 
+					 placeholder="Address {{place_holder.fac_address1}}" title="Address {{place_holder.fac_address1}}"></div>
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="fac_address2"  ng-model="data.facreg.facilities.facilityAddress2" 
+					 placeholder="Address {{place_holder.fac_address2}}" title="Address {{place_holder.fac_address2}}"></div>
+				</div>
+				
+				
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-8">
+					<input type="text" class="form-control" id="fac_address_city"  
+					ng-model="data.facreg.facilities.facilityCity"  placeholder="{{place_holder.fac_address_city}}" title="{{place_holder.fac_address_city}}"></div>
+					<div class="col-sm-4">
+					<input type="text" class="form-control" id="fac_address_state" minlength="2" maxlength="2"
+					ng-model="data.facreg.facilities.facilityState"  placeholder="{{place_holder.fac_address_state}}" title="{{place_holder.fac_address_state}}"></div>
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-6">
+					<input type="text" class="form-control"  maxlength="10"
+					ng-model="data.facreg.facilities.facilityZip"  placeholder="{{place_holder.fac_address_zip}}" title="{{place_holder.fac_address_zip}}">
+					<span ng-show="validation.facilityZip" class="error">length should be 5 digit.</span>
+					</div>
+					<div class="col-sm-6">
+					<!-- <input type="text" class="form-control" id="fac_address_country" 
+					ng-model="data.facreg.facilities.facilityCNT"  placeholder="{{place_holder.fac_address_country}}" title="{{place_holder.fac_address_country}}"> -->
+					
+					 <select class="form-control" id="fac_address_country" 
+					ng-model="data.facreg.facilities.facilityCNT" >
+	<option value="" >Please Select One Country</option>
+	<!-- <option ng-repeat="(key, value) in countries_key_value" value="{{key}}">{{value}}</option>	 -->			
+	 <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
+	</select>
+					
+					</div>
+	
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-6">
+					<!-- <input type="text" class="form-control" id="fac_phone" 
+					ng-model="data.facreg.facilities.facilityPhone"  placeholder="{{place_holder.fac_phone}}" title="{{place_holder.fac_phone}}"> -->
+					
+					<input type="text" class="form-control number_only" onkeyup="this.value=this.value.replace(/[^\d]/,'')"  id="fac_phone1" minlength="0" maxlength="10" 
+					ng-model="data.facreg.facilities.facilityPhone"  placeholder="{{place_holder.fac_phone}}" title="{{place_holder.fac_phone}}">
+					<!-- <span ng-show="validation.facilityPhone" class="error">length should be 10 digit.</span> --> 
+					</div>
+					<div class="col-sm-6"> 
+<input type="text" class="form-control number_only" onkeyup="this.value=this.value.replace(/[^\d]/,'')" id="fac_phone_ext" minlength="0" maxlength="5"
+					ng-model="data.facreg.facilities.phoneExt"  placeholder="{{place_holder.fac_phone_ext}}" title="{{place_holder.fac_phone_ext}}">
+					<!-- <span ng-show="validation.phoneExt" class="error">length should be 10 digit.</span> --> 
+					</div>
+
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-6">
+										<input type="text" class="form-control number_only" onkeyup="this.value=this.value.replace(/[^\d]/,'')" id="fac_phone2" minlength="0" maxlength="10"
+					ng-model="data.facreg.facilities.emergencyPhone"  placeholder="{{place_holder.fac_phone2}}" title="{{place_holder.fac_phone2}}">
+					<!-- <span ng-show="validation.emergencyPhone" class="error">length should be 10 digit.</span> --> 
+					</div>
+					
+					<div class="col-sm-6">
+					<input type="text" class="form-control" onkeyup="this.value=this.value.replace(/[^\d]/,'')" id="fax" minlength="0" maxlength="10"
+					ng-model="data.facreg.facilities.facilityFax"  placeholder="{{place_holder.fax}}" title="{{place_holder.fax}}">
+					<!-- <span ng-show="validation.facilityFax" class="error">length should be 10 digit.</span> -->
+					</div>
+				</div>
+				
+				
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<input type="text" class="form-control" id="email" 
+					ng-model="data.facreg.facilities.facilityEmail"  placeholder="{{place_holder.email}}" title="{{place_holder.email}}"></div>
+				</div>
+
+					<div class="col-sm-7">
+					<input title="Default Mailing Address" type="checkbox" ng-checked="data.facreg.facilities.isDefaultMailingAdd==true " id="fan_checkbox" ng-model="data.facreg.facilities.isDefaultMailingAdd"   >
+		<label for="fan_checkbox">Default  Address</label>
+					</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 thumbnail paddingleft10 width30 minheight320">
+			<div class="">
+				<h5>Comments</h5>
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<textarea class="form-control" id="fac_prt_cmts" 
+					ng-model="data.facreg.facilities.facilityComments" placeholder="{{place_holder.fac_prt_cmts}}" title="{{place_holder.fac_prt_cmts}}" style="height:240px;"></textarea></div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-4 thumbnail paddingleft10 minheight320">
+			<div class="">
+				<h5>Food Processor Information</h5>
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<select class="form-control" id="fac_pri_op"  ng-model="data.facreg.foodProcesorInfo.primaryop" title="Select Your Primary Operation" ng-disabled="disableInputs">
+						<option value="">{{place_holder.fac_pri_op}}</option>
+						<option ng-repeat="PrimOperation in PrimOperation" value="{{PrimOperation}}">{{PrimOperation}}</option>
+					</select>
+					</div>
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<select class="form-control" id="fac_other_op"  ng-model="data.facreg.foodProcesorInfo.secondaryop" title="Select Your Secondary Operation"  ng-disabled="disableInputs">
+						<option value="">{{place_holder.fac_other_op}}</option>
+						<option ng-repeat="OtherOperation in OtherOperation" value="{{OtherOperation}}">{{OtherOperation}}</option>
+					</select>
+					</div>
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-12">
+					<select class="form-control" id="fac_building_type"  ng-model="data.facreg.foodProcesorInfo.buildingtype" title="Select Your Building Type" ng-disabled="disableInputs">
+						<option value="">{{place_holder.fac_building_type}}</option>
+						<option ng-repeat= "TypeBuilding in TypeBuilding" value="{{TypeBuilding}}">{{TypeBuilding}}</option>
+					</select>
+					</div>
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-6">
+					
+					
+					<select class="form-control" id="fac_product1_type"  ng-model="data.facreg.foodProcesorInfo.prodCat1" title="Select Your Product Category" ng-change="getProductsforCat(1)" ng-disabled="disableInputs">
+						<option ng-repeat="ProdCategoryval in ProdCategory" value="{{ProdCategoryval}}">{{ProdCategoryval==''?place_holder.fac_product1_type:ProdCategoryval}}</option>
+					</select>
+					</div>
+					<div class="col-sm-6">
+					<select class="form-control" id="fac_product1"  ng-model="data.facreg.foodProcesorInfo.prodSubCat1" title="Select Your Product List" ng-disabled="disableInputs">
+						<option value="">{{place_holder.fac_product1}}</option>
+						<option ng-repeat="BakeryProdList in product1_products" value="{{BakeryProdList}}">{{BakeryProdList=''?place_holder.fac_product1:BakeryProdList}}</option>
+					</select>
+					</div>
+				</div>
+
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-6">
+					<select class="form-control" id="fac_product2_type"  ng-model="data.facreg.foodProcesorInfo.prodCat2" title="Select Your Product Category" ng-change="getProductsforCat(2)" ng-disabled="disableInputs">
+						<option ng-repeat="ProdCategoryval in ProdCategory" value="{{ProdCategoryval}}">{{ProdCategoryval==''?place_holder.fac_product1_type:ProdCategoryval}}</option>
+					</select>
+					</div>
+					<div class="col-sm-6">
+					<select class="form-control" id="fac_product2"  ng-model="data.facreg.foodProcesorInfo.prodSubCat2" title="Select Your Product List" ng-disabled="disableInputs">
+						<option value="">{{place_holder.fac_product2}}</option>
+						<option ng-repeat="BakeryProdList in product2_products" value="{{BakeryProdList}}">{{BakeryProdList=''?place_holder.fac_product2:BakeryProdList}}</option>
+					</select>
+					</div>
+				</div>
+
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-6">
+					<select class="form-control" id="fac_product3_type"  ng-model="data.facreg.foodProcesorInfo.prodCat3"  title="Select Your Product Category" ng-change="getProductsforCat(3)" ng-disabled="disableInputs">
+						<option ng-repeat="ProdCategoryval in ProdCategory" value="{{ProdCategoryval}}">{{ProdCategoryval==''?place_holder.fac_product1_type:ProdCategoryval}}</option>
+					</select>
+					</div>
+					<div class="col-sm-6">
+					<select class="form-control" id="fac_product3"  ng-model="data.facreg.foodProcesorInfo.prodSubCat3" title="Select Your Product List" ng-disabled="disableInputs">
+						<option value="">{{place_holder.fac_product3}}</option>
+						<option ng-repeat="BakeryProdList in product3_products" value="{{BakeryProdList}}">{{BakeryProdList=''?place_holder.fac_product3:BakeryProdList}}</option>
+					</select>
+					</div>
+				</div>
+
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<div class="col-sm-6">
+					<select class="form-control" id="fac_product4_type"  ng-model="data.facreg.foodProcesorInfo.prodCat4" title="Select Your Product Category" ng-change="getProductsforCat(4)" ng-disabled="disableInputs">
+						<option ng-repeat="ProdCategoryval in ProdCategory" value="{{ProdCategoryval}}">{{ProdCategoryval==''?place_holder.fac_product1_type:ProdCategoryval}}</option>
+					
+					</select>
+					</div>
+					<div class="col-sm-6">
+					<select class="form-control" id="fac_product4"  ng-model="data.facreg.foodProcesorInfo.prodSubCat4" title="Select Your Product List" ng-disabled="disableInputs">
+						<option value="">{{place_holder.fac_product4}}</option>
+						<option ng-repeat="BakeryProdList in product4_products" value="{{BakeryProdList}}">{{BakeryProdList=''?place_holder.fac_product4:BakeryProdList}}</option>
+					</select>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+</div>
+<div class="row facdet">
+
+	<div class="col-md-3 thumbnail paddingleft10 width31 minheight180">
+		<div class="">
+			<h5>Registration</h5>
+			<div class="clearfix"></div>
+			<div class="form-group">
+			<!-- 	<div class="col-sm-12"><input type="text" class="form-control" id="fac_license_no"  ng-model="data.facreg.registration.regLicense" ng-value="{{data.facreg.registration.regLicense}}"  -->
+			<div class="col-sm-12"><input type="text" class="form-control" id="fac_license_no"  ng-model="data.facreg.registration.regLicense"   ng-value="{{data.facreg.registration.regLicense}}" 
+				placeholder="{{place_holder.fac_license_no}}" title="{{place_holder.fac_license_no}}" ></div>
+			</div>
+
+			<div class="clearfix"></div>
+			<div class="form-group">
+				<div class="col-sm-12"><input  type="text"  onfocus="(this.type='date')" class="form-control" id="issued" 
+				 ng-model="data.facreg.registration.dateIssue"   
+				placeholder="{{place_holder.issued}}" title="{{place_holder.issued}}"></div>
+			</div>
+
+			<div class="clearfix"></div>
+			<div class="form-group">
+				<div class="col-sm-12"><input  type="text" onfocus="(this.type='date')" class="form-control" id="expries"  
+				ng-model="data.facreg.registration.dateExpire"  
+				placeholder="{{place_holder.expries}}" title="{{place_holder.expries}}"></div>
+			</div>
+
+			<div class="clearfix"></div>
+			<div class="form-group">
+				<div class="col-sm-12"><input type="text" class="form-control" id="urn"  ng-model="data.facreg.facilities.urn" ng-if="data.facreg.fclass.facClass == '09'   || data.facreg.fclass.facClass == '10' " 
+				placeholder=" {{place_holder.urn}}" title=" {{place_holder.urn}}"></div>
+			</div>
+		</div>
+	</div>
+<style>
+.gridtable{
+}</style>
+	<div class="col-md-10 thumbnail  minheight140">
+		<div class="">
+			<h5>Transaction</h5>
+			<div style="height: 150px; overflow-y: scroll;">
+			<table class="gridtable table table-hover table-stripped table-bordered table-fixed">
+				<thead> 
+					<tr>
+						<th class="col-xs-2">Cert.Action</th>
+						<th class="col-xs-2">Receipt</th>
+						<th class="col-xs-2">Check-No</th>
+						<th class="col-xs-2">Amount</th>
+						<th class="col-xs-1">User</th>
+						<th class="col-xs-2">Enter</th>
+						<th class="col-xs-1">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="fac in facilityRegistrations" >
+						<td class=""><p>{{fac.certaction}}</p></td>
+						<td class="">{{fac.rcpfeedt | date:'MM/dd/yyyy'}}</td>
+						<td class="">{{fac.checkno}}</td>
+						<td class="">{{fac.amount |   number:2}}</td>
+						<td class="">{{fac.tUserid}}</td>
+						<td class="">{{fac.tEntrytm}}</td>
+						<td class=""><button ng-click="editFRecit($index)"  class="glyphicon glyphicon-edit icbtn"></button>
+						<button ng-click="deleteFRecit($index)" class="glyphicon glyphicon-trash icbtn"></button></td>
+					</tr>
+			</tbody>
+			</table>
+			</div>
+	</div>		
+			<!-- <button type="button" style="float:right" class="btn btn-default" ng-click="navigateReports()" ng-disabled="(data.facreg.facilities.inspectionCompletedDate == undefined || data.facreg.facilities.inspectionCompletedDate.length == 0)">Add Transcation</button> -->
+			 <button type="button" style="float:right" class="btn btn-default" ng-click="navigateReports()" >Add Transcation</button> 
+</div>
+</fieldset>
+<div class="clearfix"></div>
+<div class="row">
+	<div class="col-md-9 text-center"><p ng-if="validation.status" class="error"> Please fill with valid data </p></div>
+	<div class="col-md-9 text-right">
+		<div class="col-md-12">
+		
+			<button class="btn" ng-click="checkAddtrans()"> Edit</button>
+			<button class="btn" ng-disabled="!(data.facreg.corp.corpName && data.facreg.facilities.facilityName )" ng-click=saveData()> Save</button>
+			<button class="btn" ng-click="print_renual()"> Print Renewal</button>
+			<button class="btn" ng-click="printRecord()"> Print Record</button>
+			<button class="btn" ng-click="print_licence()"> Print License</button>
+			<button class="btn"> Print Mail Label</button><!-- 
+			<button class="btn"> Print folder Label</button> -->
+		</div>
+	</div>
+</div>
+
+
+<!-- fac form end -->
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+</div>
+</div>

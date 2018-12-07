@@ -1,0 +1,421 @@
+
+<div class="container" ng-controller="PersonDetailCtrl">
+	<div>
+		 <button type="submit"   onclick="window.location.href='dashboard'"  class="btn btn-block" 
+						 
+						 aria-label="Close"   ><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>  Back To Dashboard</button>
+	</div>
+	<div>
+		<form class="form-horizontal ng-pristine ng-invalid ng-invalid-required"   name="frm" ng-cloak>
+		<h4 ng-show="data.hasInserted" ><span class="alert-success " class="text-center">App created with the name  {{data.appName}}</span></h4> 
+		<h4 ng-show="data.isDuplicateApp" ><span class="alert-danger " class="text-center">App {{data.appName}} already exists. Please search the app and edit if you want to make changes</span></h4> 
+		
+		<div>
+			<table class="table ">
+
+				<tr>
+					<td>
+						<button type="submit"  ng-show="data.id == null" ng-click="addPerson()" class="btn btn-block"  
+					 	data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+					 	aria-label="Close" ng-disabled="frm.$invalid"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Create App</button>
+				 	</td>
+					<td>
+						<button type="submit"  ng-show="data.id == null" ng-click="reset()" class="btn btn-block" 	
+				 		data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+				 		aria-label="Close" ng-disabled="frm.$invalid"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Reset</button>
+					</td>
+				</tr>
+				<tr>
+					<td></td><td></td>
+				</tr>
+				
+			</table>
+		</div>
+		<div>
+		</div>
+		<div>	
+		 	<table class="table">
+		 		<tr>
+					<td><button type="button"  ng-hide="data.id == null" ng-click="editAppFn()" class="btn btn-block"  aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>   Edit App</button></td>
+					<td><button type="submit"  ng-hide="data.id == null" ng-click="savePerson()" class="btn btn-block " aria-label="Close" ng-disabled="frm.$invalid" class="col-sm-3" ><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save</button></td>
+					<td><button type="button"  ng-hide="data.id == null" ng-click="removePerson()" data-toggle="confirmation"  class="btn btn-block " aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button></td>
+					<td><button type="button"  ng-hide="isReadonly== null || isReadonly || data.id == null" ng-click="markReadonly(true)"   class="btn btn-block " aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button></td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		  <fieldset ng-disabled="isReadonly">	
+		  <div class="form-group">
+		  
+		   <!-- 	<div>
+			    <label>  	</label>
+			</div>
+			<br/> -->
+
+		   <div class="panel panel-default">
+		     			  <div class="panel-heading">Application Details</div>
+			<div class="panel-body">
+					
+					 <div ng-show="data.id != null">
+					  	<label class="control-label col-sm-3" for="email">Application Id:</label>
+					    <div class="col-sm-9">
+					      <!-- <p class="form-control-static">{{data.bureau}}</p> -->
+					      <input class="form-control" ng-model="data.id" value="{{data.id}}" readonly></input>
+					    </div>
+					    <br/>
+					  </div>
+			
+		  
+				 	<label class="control-label col-sm-3" for="email">Application Name:</label>
+				    <div class="col-sm-9">
+				      <!-- <p class="form-control-static">{{data.bureau}}</p> -->
+				      <input class="form-control" name ="appName" ng-model="data.appName" value="{{data.appName}}" ng-readonly="isEditEnabled "  >
+				       <div class="field-message alert alert-danger " ng-messages="frm.appName.$error" ng-show="frm.appName.$invalid" ng-cloak>
+		                    <div ng-message="required">App Name is required</div>
+		       
+		                  </div>
+				        
+				    </div>
+				    <br/>
+				  
+				  
+				    <label class="control-label col-sm-3" for="email">Bureau:</label>
+				    <div class="col-sm-9">
+				      <!-- <p class="form-control-static">{{data.bureau}}</p> -->
+				      <input class="form-control"   name="bureau" ng-model="data.bureau" value="{{data.bureau}}" required ng-minlength="3"  ng-pattern ="/^[a-zA-Z-\s]*$/">
+				      <div class="field-message alert alert-danger "    ng-messages="frm.bureau.$error" ng-show="frm.bureau.$invalid && frm.bureau.$touched" ng-cloak>
+		                    <p ng-message="required">Bureau is required</p>
+		                    <p ng-message="minlength">Bureau must have minimum 3 characters. Only Alphabets and  - is allowed</p>
+		                  </div>
+				    </div>
+				    <br/>
+				    
+				      <label class="control-label col-sm-3" for="email">App Acronym:</label>
+				    <div class="col-sm-9">
+				       <input class="form-control" ng-model="data.appAcronym" value="{{data.appAcronym}}">
+				    </div>
+				    <br/>
+				    
+				       <label class="control-label col-sm-3" for="email">Business Application Owner:</label>
+				    <div class="col-sm-9">
+				        <input class="form-control" ng-model="data.businessApplicationOwner" value="{{data.businessApplicationOwner}}">
+				    </div>
+				    <br/>
+				    
+				       <label class="control-label col-sm-3" for="email">Data Owner:</label>
+				    <div class="col-sm-9">
+				        <input class="form-control" ng-model="data.dataOwner" value="{{data.dataOwner}}">
+				    </div>
+				    <br/>
+				    
+				       <label class="control-label col-sm-3" for="email">Technical Support Lead:</label>
+				    <div class="col-sm-9">
+				      	<input class="form-control" ng-model="data.technicalSupportLead" value="{{data.technicalSupportLead}}">
+				    </div>
+				    <br/>
+				    
+				       <label class="control-label col-sm-3" for="email">IT Program Manager:</label>
+				    <div class="col-sm-9">
+				      	      <input class="form-control" ng-model="data.iTProgramManager" value="{{data.iTProgramManager}}">
+				    </div>
+				    <br/>
+				    
+				       <label class="control-label col-sm-3" for="email">Vendor:</label>
+				    <div class="col-sm-9">
+				      	      <input class="form-control" ng-model="data.vendor" value="{{data.vendor}}">
+				    </div>
+				    <br/>
+				    
+				       <label class="control-label col-sm-3" for="email">Web Application :</label>
+				    <div class="col-sm-9">
+				      <select  class="form-control"  ng-model="data.webApplicationYesOrNo" >
+			    			<option ng-repeat="webApplicationYesOrNo in yesnos" value="{{webApplicationYesOrNo}}">{{webApplicationYesOrNo}}</option> 
+					   </select>
+				    </div>
+				    <br/>
+				    
+				       <label class="control-label col-sm-3" for="email">Access Database :</label>
+				    <div class="col-sm-9">
+				    <select  class="form-control"  ng-model="data.accessDatabaseYOrN" >
+			    			<option ng-repeat="accessDatabaseYOrN in yesnos" value="{{accessDatabaseYOrN}}">{{accessDatabaseYOrN}}</option> 
+					   </select>
+				    </div>
+				    <br/>
+				    
+				    <div ng-show="data.accessDatabaseYOrN == 'No' ">
+				       <label class="control-label col-sm-3" for="email">NonAccess Database Type:</label>
+					    <div class="col-sm-9">
+					     <input class="form-control" ng-model="data.nonAccessDatabaseType" value="{{data.nonAccessDatabaseType}}"  placeholder="Please provide the name and type of database used">
+					    </div>
+				    </div>
+				    <br/>
+				    
+				       <label class="control-label col-sm-3" for="email">Mission Critical:</label>
+				    <div class="col-sm-9">
+				       <select  class="form-control"  ng-model="data.missionCritical" >
+			    			<option ng-repeat="missionCriticalyesno in yesnos" value="{{missionCriticalyesno}}">{{missionCriticalyesno}}</option> 
+					   </select>
+				    </div>
+				    <br/>
+				    
+				       <label class="control-label col-sm-3" for="email">inidcator504:</label>
+				    <div class="col-sm-9">
+				        <select  class="form-control"  ng-model="data.inidcator504" >
+			    			<option ng-repeat="inidcator504yesno in yesnos" value="{{inidcator504yesno}}">{{inidcator504yesno}}</option> 
+					   </select>
+				    </div>
+				    <br/>
+				    
+				    <label class="control-label col-sm-3" for="email">Data Classification:</label>
+				    <div class="col-sm-9">
+				        <select  class="form-control"  ng-model="data.dataClassification" >
+			    			<option ng-repeat="dataClassification in dataclassficationvals" value="{{dataClassification}}">{{dataClassification}}</option> 
+					   </select>
+				    </div>
+				    <br/>
+				    
+				    <label class="control-label col-sm-3" for="email">Active_Ind:</label>
+				    <div class="col-sm-9">
+		       			 <select  class="form-control"  ng-model="data.activeInd" >
+			    			<option ng-repeat="activeIndyesno in yesnos" value="{{activeIndyesno}}">{{activeIndyesno}}</option> 
+					   </select>
+				    </div>
+				    <br/>
+				    
+				    <label class="control-label col-sm-3" for="data.email">Requires 24x7 Support:</label>
+				    <div class="col-sm-9">
+				        <select  class="form-control"  ng-model="data.requires24x7Support" >
+			    			<option ng-repeat="requires24x7Support in yesnos" value="{{requires24x7Support}}">{{requires24x7Support}}</option> 
+					   </select>
+				    </div>
+				    <br/>
+				    
+				    <label class="control-label col-sm-3" for="data.email">Audience:</label>
+				    <div class="col-sm-9">
+				       <input class="form-control" ng-model="data.audience" value="{{data.audience}}">
+				    </div>
+				    <br/>
+				    	    
+				    <label class="control-label col-sm-3" for="email">Number of Users:</label>
+				    <div class="col-sm-9">
+				       <input class="form-control" name="noofusers" ng-model="data.numberOfUsers" value="{{data.numberOfUsers}}" ng-pattern="/^[0-9]*$/">
+				       	<div class="field-message alert alert-danger "    ng-messages="frm.noofusers.$error" ng-show="frm.noofusers.$invalid && frm.noofusers.$touched" ng-cloak>
+		                    <p ng-message="minlength">No of users must be numbers</p>
+		                </div>
+				    </div>
+				    
+				    <br/>
+				    
+				     <label class="control-label col-sm-3" for="email">Contact Person:</label>
+				    <div class="col-sm-9">
+				       <input class="form-control" ng-model="data.contactPerson" value="{{data.contactPerson}}">
+				    </div>
+				    <br/>
+				    
+				    <label class="control-label col-sm-3" for="email">App Description:</label>
+				    <div class="col-sm-9">
+				       <textarea class="form-control" ng-model="data.appDescription" value="{{data.appDescription}}"></textarea>
+				    </div>
+				    <br/>
+				    
+				    <label class="control-label col-sm-3" for="email">Bureau Application Notes:</label>
+				    <div class="col-sm-9">
+				       <textarea class="form-control" ng-model="data.bureauApplicationNotes" value="{{data.bureauApplicationNotes}}"></textarea>
+				    </div>
+				    <br/>
+			</div>
+			</div>
+			 	<div>
+			    	<label>  	</label>
+			    		
+			    </div>
+
+		 <div ng-show="isAdmin">
+
+		   <div class="panel panel-default">
+		     			  <div class="panel-heading">Technical Information</div>
+			<div class="panel-body">
+		    
+		    
+		    
+				   
+				    
+				    	<div  ng-show="isReadonly">
+					    <label class="control-label col-sm-3" for="email">Server_Details:</label>
+					    <div class="col-sm-9">
+					       <input class="form-control" ng-model="data.serverDetails" value="{{data.serverDetails}}"  >
+					    </div>
+					    <br/>
+					  </div>
+					    
+					    <div  ng-hide="isReadonly">
+					    <label class="control-label col-sm-3" for="email">Server_Details:</label>
+					    <div class="col-sm-9">
+					       <input class="form-control" ng-model="data.serverDetails" value="{{data.serverDetails}}"  placeholder="Example: IP address, Hostname, Port number etc">
+					    </div>
+					    <br/>
+					    </div>
+					    
+					   <!--   <label class="control-label col-sm-3" for="email">Physical Location:</label>
+					    <div class="col-sm-9">
+					       <input class="form-control" ng-model=data.physicalLocation value="{{data.physicalLocation}}">
+					    </div>
+					    <br/> -->
+					    
+					    <div  ng-show="isReadonly">
+					    <label class="control-label col-sm-3" for="email">Platform:</label>
+					    <div class="col-sm-9">
+					       <input class="form-control" ng-model=data.platform value="{{data.platform}}">
+					    </div>
+					    <br/>
+					    </div>
+					    
+					        <div  ng-hide="isReadonly">
+					    <label class="control-label col-sm-3" for="email">Platform:</label>
+					    <div class="col-sm-9">
+					       <input class="form-control" ng-model=data.platform value="{{data.platform}}" placeholder="Example: Windows 2003, windows 2012, Linux, etc">
+					    </div>
+					    <br/>
+					    </div>
+					    
+					    
+					    <div  ng-show="isReadonly">
+					    <label class="control-label col-sm-3" for="email">Platform Notes:</label>
+					    <div class="col-sm-9">
+					       <textarea class="form-control" ng-model="data.platformnotes" value="{{data.platformnotes}}" ></textarea>
+					    </div>
+					    <br/>
+					    </div>
+					    
+					    <div  ng-hide="isReadonly">
+					    <label class="control-label col-sm-3" for="email">Platform Notes:</label>
+					    <div class="col-sm-9">
+					       <textarea class="form-control" ng-model="data.platformnotes" value="{{data.platformnotes}}" placeholder="Please specify if you have any additional information"></textarea>
+					    </div>
+					    <br/>
+					    </div>
+					    
+					    
+					    
+					    <label class="control-label col-sm-3" for="email">Hosted At :</label>
+					    <div class="col-sm-9">
+					    	<select  class="form-control"  ng-model="data.hostedAt" >
+					    	<option ng-repeat="hostedAtoption in hostedAts" value="{{hostedAtoption}}">{{hostedAtoption}}</option>
+					    	 </select>
+						</div>
+						<br/>
+						<div ng-show="data.hostedAt == 'Other' ">
+							<label class="control-label col-sm-3" for="email">Hosted At others :</label>
+						    <div class="col-sm-9">
+						    	<input  class="form-control"  ng-model="data.hostedAtOthers" value="{{data.hostedAtOthers}}"  placeholder="Example:  DPH central office, State Lab , 99 Chauncy etc "/> 
+							</div>
+						</div>
+						<br/>
+						
+						<label class="control-label col-sm-3" for="email">FoxPro_Application :</label>
+					    <div class="col-sm-9">
+					    	<select  class="form-control"  ng-model="data.foxproApplication" >
+					    		<option ng-repeat="foxproyesno in yesnos" value="{{foxproyesno}}">{{foxproyesno}}</option>
+					    	</select>
+						</div>
+						<br/>
+						
+						<label class="control-label col-sm-3" for="email">App accessible from public internet :</label>
+					    <div class="col-sm-9">
+					    	<select  class="form-control"  ng-model="data.internetAccessibility" >
+					    		<option ng-repeat="internetAccessibilityyesno in yesnos" value="{{internetAccessibilityyesno}}">{{internetAccessibilityyesno}}</option> 
+					    	</select>
+						</div>
+						<br/>
+				     </div>
+		     </div>
+		     </div>
+		     	<div>
+			    	<label>  	</label>
+			    </div>
+			    
+     			  <div class="panel panel-default">
+     			  <div class="panel-heading">Security Assessment</div>
+						<div class="panel-body"> 
+						
+								<label class="control-label col-sm-3" for="email">Confidentiality
+									:</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="data.confidentiality">
+										<option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+									</select>
+								</div>
+								<br /> <label class="control-label col-sm-3" for="email">Integrity
+									:</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="data.integrity">
+										<option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+									</select>
+								</div>
+								<br /> <label class="control-label col-sm-3" for="email">Availability
+									:</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="data.availability">
+										<option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+									</select>
+								</div>
+								<br /> <label class="control-label col-sm-3" for="email">Overall_Rating
+									:</label>
+								<div class="col-sm-9">
+									<select class="form-control" ng-model="data.overallRating">
+										<option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+									</select>
+								</div>
+								<br /> <label class="control-label col-sm-3" for="email">Critical_Or_NonCritical
+									:</label>
+								<div class="col-sm-9">
+									<select class="form-control"
+										ng-model="data.criticalOrNonCritical">
+										<option ng-repeat="critical in criticals" value="{{critical}}">{{critical}}</option>
+									</select>
+								</div>
+								<br />
+							</div>
+						</div>
+		  		</div>
+		  	</fieldset>
+		  	
+			<div>
+				<table class="table ">
+					<tr>
+						<td>
+							<button type="submit"  ng-show="data.id == null" ng-click="addPerson()" class="btn btn-block"  class="col-sm-6"
+						 	data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+						 	aria-label="Close" ng-disabled="frm.$invalid"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Create App</button>
+					 	</td>
+						<td>
+							<button type="submit"  ng-show="data.id == null" ng-click="reset()" class="btn btn-block" 	class="col-sm-6"
+					 		data-toggle="modal" data-target="#addPersonSuccessModal" data-dismiss="modal" 
+					 		aria-label="Close" ng-disabled="frm.$invalid"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Reset</button>
+						</td>
+					</tr>
+				</table>
+			</div> 
+			<div>	
+			 	<table class="table">
+			 		<tr>
+						<td><button type="button"  ng-hide="data.id == null" ng-click="markReadonly(false)" class="btn btn-block"  aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>   Edit App</button></td>
+						<td><button type="submit"  ng-hide="data.id == null" ng-click="savePerson()" class="btn btn-block " aria-label="Close" ng-disabled="frm.$invalid" class="col-sm-3" ><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Save</button></td>
+						<td><button type="button"  ng-hide="data.id == null" ng-click="removePerson()" data-toggle="confirmation"  class="btn btn-block " aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button></td>
+						<td><button type="button"  ng-hide="isReadonly== null || isReadonly || data.id == null" ng-click="markReadonly(true)"   class="btn btn-block " aria-label="Close"  class="col-sm-3" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button></td>
+					</tr>
+				</table>
+			</div>
+			<h4 ng-show="data.hasInserted" ><span class="alert-success " class="text-center">App created with the name  {{data.appName}}</span></h4> 
+			<h4 ng-show="data.isDuplicateApp" ><span class="alert-danger " class="text-center">App {{data.appName}} already exists. Please search the app and edit if you want to make changes</span></h4> 
+		
+			
+		</form>
+	</div>
+	<div>
+		<button type="submit" onclick="window.location.href='dashboard'" class="btn btn-block" aria-label="Close">
+			<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>		Back To Dashboard		</button>
+	</div>
+
+</div>
+

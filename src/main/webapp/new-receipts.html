@@ -1,0 +1,174 @@
+<html>
+<head>
+<style type="text/css">
+.btn-block {
+display: block;
+width: 50%;
+background-color: light-grey;
+margin-left: 150%;
+margin-top: 1%;
+
+}
+
+.form-group {
+margin-bottom: 1.8%;
+margin-left: 35%;
+
+}
+.h4 {
+margin-left: 45%;
+margin-bottom:2%;
+}
+.dateclass {
+  width: 31%;
+}
+
+.dateclass.placeholderclass::before {
+  width: 100%;
+  content: attr(placeholder);
+}
+
+.dateclass.placeholderclass:hover::before {
+  width: 0%;
+  content: "";
+}
+
+
+</style>
+</head>
+ 
+<div class="container" ng-controller="PersonDetailCtrl">
+
+
+<div class="h4">
+<h3>Add New Receipt</h3>
+</div>
+<div class="">
+<div class="form-group">
+<div class="sc-bdVaJa cXgeQK">
+
+<label class="control-label col-sm-3" for="email">BATCH NUMBER:</label>
+<input type="text" ng-model="data" placeholder="ENTER BATCH NUMBER" size="40"/>
+</div>
+</div>
+
+
+<div class="form-group">
+<div class="sc-bdVaJa cXgeQK">
+
+<label class="control-label col-sm-3" for="email">DATE:</label>
+
+<input
+  type="date"
+  placeholder="PLEASE SPECIFY A DATE"
+  onClick="$(this).removeClass('placeholderclass')"
+  class="dateclass placeholderclass">
+
+
+</div>
+</div>
+<div class="form-group">
+<div class="sc-bdVaJa cXgeQK">
+
+<label class="control-label col-sm-3" for="email">REVENUE SOURCE CODE:</label>
+<input type="text" ng-model="" placeholder="ENTER REVENUE SOURCE CODE" size="40"/>
+</div>
+</div>
+<div class="form-group">
+<div class="sc-bdVaJa cXgeQK">
+
+<label class="control-label col-sm-3" for="email">SELECT CATEGORY NAME:</label>
+ <div class="col-sm-9">
+  <select  class="form-control"  ng-model="data.testvalues" placeholder="Select your Category" width="10">
+  <option ng-repeat="item in testvalues" value="{{item}}">{{item}}</option>
+  </select>
+
+
+</div>
+</div>
+
+<div class="form-group">
+<div class="sc-bdVaJa cXgeQK">
+
+<label class="control-label col-sm-3" for="email">CHECK NUMBER:</label>
+<input type="text"  placeholder="ENTER THE CHECK NUMBER" size="40"/>
+</div>
+</div>
+</div>
+<div class="">
+<div class="form-group">
+<div class="sc-bdVaJa cXgeQK">
+
+<label class="control-label col-sm-3" for="email">AMOUNT:</label>
+<input type="text"  placeholder="ENTER THE AMOUNT" size="40"/>
+</div>
+</div>
+<div class="form-group">
+<div class="sc-bdVaJa cXgeQK">
+
+<label class="control-label col-sm-3" for="email">APPLICANT:</label>
+<input type="text"  placeholder="ENTER APPLICANT NAME" size="40"/>
+
+</div>
+</div>
+<div class="form-group">
+<div class="sc-bdVaJa cXgeQK">
+
+<label class="control-label col-sm-3" for="email">SELECT STATUS:</label>
+<select  class="form-control"  ng-model="data.status" >
+  <option ng-repeat="item in status" value="{{item}}">{{item}}</option>
+  </select>
+
+</div>
+</div>
+
+<div class="form-group">
+<div class="sc-bdVaJa cXgeQK">
+
+<label class="control-label col-sm-3" for="email">PAYER:</label>
+<input type="text"  placeholder="ENTER PAYER NAME" size="40"/>
+</div>
+</div>
+
+<div class="form-group">
+<div class="sc-bdVaJa cXgeQK">
+
+<label class="control-label col-sm-3" for="email">COMMENTS:</label>
+<input type="text"  placeholder="COMMENTS" size="40"/>
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+ <div class="row">
+<div class="col-sm-3">
+				<button type="button" onclick="window.location.href='#!NewReceipt'"
+				class="btn btn-block btn-lg">
+				
+				<p>SAVE</p>
+				</button>
+				</div>
+				<div class="col-sm-3">
+				<button type="button" onclick="window.location.href='#!SearchReceipt'"
+				class="btn btn-block btn-lg">
+				
+				<p>BACK</p>
+				</button>
+			</div>
+			</div> 
+    </div>
+   
+</html>
+
+
+
+ 
+     
+    
+  

@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+
+  </head>
+  <body>
+
+<div ng-controller="MainCtrl as main">
+  <div class="control-group">
+    <button id="toggleVisibility" type="button" class="btn btn-sm btn-default" ng-click="main.toggleExpandAllBtn()">Toggle Expand All Visibility</button>
+    <button type="button" class="btn btn-sm btn-default" ng-click="main.expandAllRows()">Expand All</button>
+    <button type="button" class="btn btn-sm btn-default" ng-click="main.collapseAllRows()">Collapse All</button>
+  </div>
+  <div id="grid1" ui-grid="main.gridOptions" ui-grid-pinning ui-grid-expandable class="grid"></div>
+</div>
+Expandable rows works with checkboxes from selection and left pins
+<div ng-controller="SecondCtrl as second">
+   <div ui-grid="second.gridOptions" ui-grid-pinning ui-grid-expandable ui-grid-selection class="grid"></div>
+</div>
+Retrieve data for subGrid when expanding
+<div ng-controller="ThirdCtrl as third">
+   <div ui-grid="third.gridOptions" ui-grid-expandable class="grid"></div>
+</div>
+Toggle expand subGrid control
+<div ng-controller="FourthCtrl as fourth">
+   <div ui-grid="fourth.gridOptions" ui-grid-expandable class="grid"></div>
+</div>
+
+
+    <script src="app.js"></script>
+  </body>
+</html>

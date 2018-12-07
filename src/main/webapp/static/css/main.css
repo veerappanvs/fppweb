@@ -1,0 +1,80 @@
+body {
+  padding: 20px;
+}
+
+/* .grid {
+  width: 1550px;
+  height: 500px;
+} */
+
+.ui-grid-cell {
+  overflow: visible;
+  z-index: 99999;
+}
+
+.ui-grid-cell, ui-select-wrap {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+ .resubmission-row-class { color: red }
+  .resubmission-row-class1 { color: green }
+ .row-class { color: black }
+ 
+ 
+/*  h1{
+	color:#0000FF;
+} */
+
+/* h2{
+	color:#FF0000;
+} */
+
+.modal-header {
+    max-height:40%; 
+    overflow-y: auto;
+}
+.modal .modal-dialog { 
+    width: 140vh;
+    /* width: 100% */
+   background-color: blue;
+}
+.jumbotron {
+    max-height: 80px;
+}
+.logo-small {
+      color: #f4511e;
+      font-size: 50px;
+}
+
+/*  .container-fluid {
+     padding: 60px 50px;
+ }
+ */
+.button-dashboard {
+    background-color: #f2f2f2;
+    border: none;
+    color: black;
+    padding: 40px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+   border-top: 1px white;
+}
+
+/* 
+.modal-body {
+    max-height: 1600px;
+   width:whatever
+} */

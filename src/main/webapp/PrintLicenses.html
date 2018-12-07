@@ -1,0 +1,26 @@
+<div class="container" ng-controller="RenewalNoticesCtrl">
+<div class="row">
+	  					<div class="col-sm-5">
+	  					 <!--  <label class="control-label col-sm-3" for="email">License Category Type</label> -->
+					      <select class="form-control ng-pristine ng-valid ng-not-empty ng-touched" ng-model="acctname" >
+					      		<option ng-repeat="ProdCategoryval in acctnameDropDown" value="{{ProdCategoryval}}">
+					      		{{ProdCategoryval==''?'Select Your License Category':ProdCategoryval}}</option>
+						   </select>
+	  					</div>
+	  					<div class="col-sm-5">
+	  					 <!--  <label class="control-label col-sm-3" for="email">License Category Type</label> -->
+					      <select class="form-control ng-pristine ng-valid ng-not-empty ng-touched" ng-model="Orderby">
+					      		<option ng-repeat="ProdCategoryval in Orderbylist" value="{{ProdCategoryval}}">
+					      		{{ProdCategoryval==''?'Order by':ProdCategoryval}}</option>
+						   </select>
+	  					</div>
+	  					<div class="col-sm-2"><button type="submit" ng-click="printLicense(acctname, Orderby )" class="btn btn-block">
+						<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Print</button></div>
+  					</div>
+  					
+  				<div class="clearfix"><br></div>	
+<div class="row">
+  			  <div ng-if="checked" >Loading Please Wait</div>
+  				</div>	
+
+</div>

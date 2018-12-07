@@ -1,0 +1,19 @@
+<style>
+.modal .modal-dialog {
+    width: 170vh !important;
+}
+</style>
+<!-- fac form start -->
+<div  ng-controller="MailMergeListCtrl">
+<div class="modal-header">
+	         <button type="button" class="close pull-right" ng-click="cancel()">&times;</button>
+	         <h4 class="modal-title">{{genNoticeModelLbl}} <button class="btn  pull-right " ng-click="MailGenClick()" style="margin-right:10px">Generate Notices</button></h4>
+	         
+	       </div><div class="mymodel modal-body">
+	       
+<div class="">
+	 <div id="grid" ui-grid="gridOptions"  class="grid" ng-if="checked" ></div>
+</div>
+
+</div>
+</div>

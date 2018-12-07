@@ -1,0 +1,38 @@
+<div class="container" ng-controller="RenewalNoticesCtrl">
+
+<div ng-show="hasError" class="alert alert-warning">
+  <p >{{errorMsg}}</p>
+</div>
+<div class="row">
+	  					<div class="col-sm-5">
+	  					 <!--  <label class="control-label col-sm-3" for="email">License Category Type</label> -->
+					      <select class="form-control ng-pristine ng-valid ng-not-empty ng-touched" ng-model="catName" ng-change="Showtable()">
+					      		<option ng-repeat="ProdCategoryval in accountName24" value="{{ProdCategoryval}}">{{ProdCategoryval==''?'Select License Type':ProdCategoryval}}</option>
+						   </select>
+	  					</div>
+	  					<div class="col-sm-2"><input id="today" type="{{type.startDate}}" onfocus="(this.type='date')"  
+	  					class="form-control ng-pristine ng-untouched ng-valid ng-empty" 
+	  					placeholder="Start Range" ng-model="startDate" value="" data-date="" data-date-format="mm/dd/yyyy"  ng-change="addMonth(startDate)"  ></div>
+	  					
+	  					<div class="col-sm-2"> <input id="today" type="{{type.startDate}}" 
+	  					onfocus="(this.type='date')" class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+	  					 placeholder="End Range" ng-model="endDate" value="" data-date="" data-date-format="mm/dd/yyyy"></div>
+	  					 
+	  					<div class="col-sm-3"><button type="submit" ng-disabled="genNoticesFlag" ng-click="openModel()" class="btn btn-block">
+						<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> {{genNoticeLbl}}</button></div>
+  					</div>
+  					
+  				<div class="clearfix"><br></div>
+  				<div class="col-md-offset-2 col-md-8" ng-hide="showdates">
+  					<div class="thumbnail text-center">
+  						<h5 class="text-center" ng-if="chkDtate1" >First Notice was sent On: {{chkDtate1|date:"MM/dd/yyyy hh:mm"}}</h5>
+  						<h5 class="text-center"  ng-if="chkDtate2">Second Notice was sent On: {{chkDtate2|date:"MM/dd/yyyy hh:mm"}}</h5>
+  					</div>
+  				</div>	
+  				
+  				<div class="clearfix"><br></div>
+<div class="row">
+  			  <div id="grid" ui-grid="gridOptions"  class="grid" ng-if="checked" ></div>
+  				</div>	
+
+</div>

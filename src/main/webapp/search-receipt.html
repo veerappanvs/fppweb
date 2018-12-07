@@ -1,0 +1,114 @@
+<div class="container" ng-controller="SearchReceiptCtrl as search">
+ 
+<h4>SEARCH RECEIPT </h4>
+   <div id="search" >
+
+   	<form class="form-horizontal">
+         <div class="row">
+<!--             <div class="col-sm-6">
+ -->            <div class="col-sm-3">
+               <input
+                  id="input" type="number" ng-maxlength="7" class="form-control" name="batchNumber"
+                  placeholder="Batch number"
+                  ng-model="batchNumber" 
+                  ng-init="count=0"/>
+               </div>
+               <div class="col-sm-3">
+               <input
+                  id="input" type="number" class="form-control" name="accountNumber"
+                  placeholder="Revenue Source Code"
+                  ng-model="accountNumber" 
+                  ng-init="count=0" />
+               </div>
+               <div class="col-sm-2">
+               <input
+                  id="input" type="date" class="form-control" name="receiptFeeDate"
+                  placeholder="Receipt Date"
+                  ng-model="receiptFeeDate"
+                  value={{receiptFeeDate}}
+                  data-date="" data-date-format="mm/dd/yyyy"	
+                  ng-init="count=0" />
+               </div>
+                  <!-- <input
+                     id="input" type="button" class="form-control" name="receiptFeeDate"
+                     placeholder="Receipt Date"
+                     ng-click="showSearchResults(batchNumber, accountNumber, receiptFeeDate)"
+                     
+                     ng-init="count=0" /> -->
+<!--             </div>   
+ -->             <div class="col-sm-2">
+              <button type="submit"  ng-click="showSearchResults(batchNumber, accountNumber, receiptFeeDate)"  class="btn btn-block">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+          	</div>
+			<div class="col-sm-2">
+			<button type="submit"  ng-click="back()" class="btn btn-block" 	class="col-sm-6"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>  Back</button>
+			</div>
+
+          </div>
+          <br/>
+          <div class="row">
+<!--             <div class="col-sm-8">
+ -->		    <!-- <td style="padding-left: 30px"> -->
+		    <div class="col-sm-4">
+		   <button type="submit"  ng-click="ReceiptofFeeReport(batchNumber, accountNumber, receiptFeeDate)"  class="btn btn-block"  >
+								<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Receipt of Fees Report</button>
+		    </div>
+		    <div class="col-sm-4">
+			<button type="submit"  ng-click="TransmitalReport(batchNumber, accountNumber, receiptFeeDate)"  class="btn btn-block"  >
+								<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Transmittal Report</button>
+			</div>
+			<!-- <td style="padding-left: 60px"> -->
+<!-- 			</div>
+ -->			
+		  
+		</div><!--row-->
+	</form>
+
+	</div>
+
+<div>
+   <p><br/></p>
+</div>
+<div class="generic-container">
+   <div ng-init="checked=false" ng-if="checked" ui-grid="gridOptions"  ui-grid-exporter=""
+      ui-grid-resize-columns="" ui-grid-edit="" class="grid"></div>
+</div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body" class="container">
+<!--             <div class="jumbotron ">
+               <div>
+                  <h4 class="text-center">{{detail.appName}}</h4>
+               </div>
+            </div>
+ -->            <!-- <div ng-include="'AddReciept.html'" onload="id=detail.id"  ng-init="id=detail.id" ></div> -->
+            <!-- <div ng-include="AddReciept.html" onload="id=detail.id"  ng-init="id=detail.id" ></div> -->
+            <div ng-include="'AddReceiptModal.html'"  ></div>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+<div id="myModal1" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="modal-body" class="container">
+            <div class="jumbotron ">
+               <div>
+                  <h4 class="text-center">Please fill all 3 fields first.</h4>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
